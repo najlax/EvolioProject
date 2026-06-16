@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------- Global styles ------------------------- */
+body {
+  background-color: #f8fafc;
+}
+
+@layer components {
+  /* ------------------------- Layout ------------------------- */
+
+  .page-shell {
+    @apply flex flex-col md:flex-row;
+  }
+
+  .page-main {
+    @apply flex-1 p-6;
+  }
+
+  .page-header {
+    @apply mb-6 text-2xl font-bold text-gray-800;
+  }
+
+  .page-header-row {
+    @apply mb-6 flex items-center justify-between;
+  }
+
+  .auth-container {
+    @apply mx-auto max-w-md px-6 py-12;
+  }
+
+  .auth-title {
+    @apply mb-6 text-center text-2xl font-bold text-gray-800;
+  }
+
+  .card-title {
+    @apply mb-3 font-semibold text-gray-800;
+  }
+
+  /* ------------------------- Buttons ------------------------- */
+  .primary-btn {
+    @apply rounded-lg px-4 py-2 text-sm font-medium transition bg-[#001776] text-white hover:bg-[#001456];
+  }
+
+  .secondary-btn {
+    @apply rounded-lg px-4 py-2 text-sm font-medium transition bg-[#199DB2] text-white hover:bg-[#147d8f];
+  }
+
+  .accent-btn {
+    @apply rounded-lg px-4 py-2 text-sm font-medium transition bg-[#3199CC] text-white hover:bg-[#2b86b3];
+  }
+
+  .outline-btn {
+    @apply rounded-lg px-4 py-2 text-sm font-medium transition bg-white text-[#001776] border border-[#001776] hover:bg-[#F0F4FF];
+  }
+
+  .danger-btn {
+    @apply rounded-lg px-4 py-2 text-sm font-medium transition bg-red-600 text-white hover:bg-red-700;
+  }
+
+  /* ------------------------- Cards ------------------------- */
+
+  .section-card {
+    @apply rounded-xl border border-[#DDE7F0] bg-white p-5 shadow-sm;
+  }
+
+  /* ------------------------- Forms ------------------------- */
+  .form-input {
+    @apply w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-[#3199CC] focus:outline-none;
+  }
+
+  .form-label {
+    @apply mb-1 block text-sm font-medium text-gray-700;
+  }
+
+  .filter-select {
+    @apply h-10 rounded-lg border border-gray-300 px-3 text-sm focus:border-[#3199CC] focus:outline-none;
+  }
+
+  .filter-bar {
+    @apply mb-6 flex flex-col gap-3 sm:flex-row;
+  }
+
+  .alert-success {
+    @apply mb-4 rounded-lg bg-green-50 p-2 text-sm text-green-700;
+  }
+
+  .alert-error {
+    @apply mb-4 rounded-lg bg-red-50 p-2 text-sm text-red-600;
+  }
+
+  /* ------------------------- Sidebar ------------------------- */
+  .sidebar {
+    @apply w-full shrink-0 border-b border-[#001456] bg-[#001776] p-4 md:min-h-screen md:w-60 md:border-b-0 md:border-r;
+  }
+
+  .sidebar-link {
+    @apply rounded-lg px-3 py-2 text-sm transition;
+  }
+
+  .sidebar-link-active {
+    @apply bg-[#199DB2] text-white;
+  }
+
+  .sidebar-link-idle {
+    @apply text-white/70 hover:bg-white/10 hover:text-white;
+  }
+
+  /* ------------------------- Badges ------------------------- */
+  .badge {
+    @apply rounded-full px-3 py-1 text-xs font-medium;
+  }
+
+  .badge-blue {
+    @apply bg-[#E6F2FA] text-[#001776];
+  }
+
+  .badge-teal {
+    @apply bg-[#E1F4F7] text-[#147d8f];
+  }
+
+  .badge-success {
+    @apply bg-green-50 text-green-700;
+  }
+
+  .badge-warning {
+    @apply bg-yellow-50 text-yellow-700;
+  }
+
+  .badge-error {
+    @apply bg-red-50 text-red-700;
+  }
+
+  .badge-gray {
+    @apply bg-gray-100 text-gray-700;
+  }
+
+  /* ------------------------- Dashboard ------------------------- */
+
+  .dashboard-grid {
+    @apply mb-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4;
+  }
+
+  .stats-grid-3 {
+    @apply mb-6 grid gap-4 sm:grid-cols-3;
+  }
+
+  .content-grid {
+    @apply grid gap-6 lg:grid-cols-2;
+  }
+
+  .content-grid-3 {
+    @apply grid gap-6 lg:grid-cols-3;
+  }
+
+  .card-grid {
+    @apply grid gap-4 md:grid-cols-2;
+  }
+
+  .list-row {
+    @apply flex items-center justify-between rounded-lg border border-gray-100 p-3;
+  }
+
+  .list-row-responsive {
+    @apply flex flex-col gap-2 rounded-lg border border-gray-100 p-3 sm:flex-row sm:items-center sm:justify-between;
+  }
+
+  .project-item {
+    @apply rounded-lg border border-gray-100 p-4;
+  }
+
+  .avatar {
+    @apply flex h-16 w-16 items-center justify-center rounded-full text-xl font-bold text-white;
+  }
+
+  .preview-box {
+    @apply flex items-center justify-center rounded-lg bg-gray-100 text-sm text-gray-400;
+  }
+
+  .upload-box {
+    @apply flex flex-col items-center rounded-lg border-2 border-dashed border-gray-300 text-center;
+  }
+
+  .activity-row {
+    @apply flex justify-between border-b border-gray-100 pb-2;
+  }
+
+  .timeline-item {
+    @apply border-l-2 border-[#3199CC]/30 pl-3;
+  }
+
+  .progress-track {
+    @apply h-2 w-full rounded-full bg-gray-100;
+  }
+
+  .progress-fill {
+    @apply h-2 rounded-full bg-[#199DB2];
+  }
+
+  /* ------------------------- AI sections ------------------------- */
+
+  .ai-box {
+    @apply rounded-xl border border-[#199DB2]/30 bg-[#E1F4F7] p-5 shadow-sm;
+  }
+
+  .ai-result {
+    @apply mb-3 rounded-lg bg-white p-3 text-sm text-gray-700;
+  }
+
+  /* ------------------------- Modals ------------------------- */
+  .modal-backdrop {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4;
+  }
+
+  .modal-card {
+    @apply w-full max-w-lg rounded-xl bg-white p-6 shadow-lg;
+  }
+}
