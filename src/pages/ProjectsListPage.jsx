@@ -7,15 +7,13 @@ import {
   Button,
   Badge,
   Input,
-  Modal,
   EmptyState,
   LoadingState,
 } from "../components/Components.jsx";
 import { getProjects, deleteProject as apiDeleteProject } from "../services/api.js";
-import { aiFeedback } from "../data.js";
 
 // Projects List Page - shows the student's projects with search/filter
-// plus add/edit/delete and a fake "Enhance with AI" feedback modal.
+// plus add/edit/delete.
 export default function ProjectsListPage() {
   const navigate = useNavigate();
 
@@ -25,10 +23,6 @@ export default function ProjectsListPage() {
 
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All"); // All / Published / Draft
-
-  // AI modal state (mock)
-  const [aiOpen, setAiOpen] = useState(false);
-  const [aiLoading, setAiLoading] = useState(false);
 
   // Load this student's projects from the backend on mount.
   useEffect(() => {
@@ -45,12 +39,6 @@ export default function ProjectsListPage() {
     } catch (err) {
       setError(err.message || "Could not delete that project.");
     }
-  }
-
-  function openAIFeedback() {
-    setAiOpen(true);
-    setAiLoading(true);
-    setTimeout(() => setAiLoading(false), 1500);
   }
 
   // Filter projects by search text AND status (client-side).
@@ -137,9 +125,6 @@ export default function ProjectsListPage() {
                     <Button variant="danger" onClick={() => deleteProject(project.id)}>
                       Delete
                     </Button>
-                    <Button variant="teal" onClick={openAIFeedback}>
-                      Enhance with AI
-                    </Button>
                   </div>
                 </Card>
               ))}
@@ -147,18 +132,6 @@ export default function ProjectsListPage() {
           </>
         )}
       </main>
-
-      {/* AI feedback modal (fake AI) */}
-      <Modal open={aiOpen} onClose={() => setAiOpen(false)} title="AI Project Feedback">
-        {aiLoading ? (
-          <LoadingState message="AI is reviewing your project..." />
-        ) : (
-          <div>
-            <p className="mb-4 text-sm text-gray-700">{aiFeedback.projectFeedback}</p>
-            <Button onClick={() => setAiOpen(false)}>Got it</Button>
-          </div>
-        )}
-      </Modal>
     </div>
   );
 }

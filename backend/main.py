@@ -5,6 +5,7 @@ from fastapi.staticfiles import StaticFiles
 from db.session import init_db
 from storage import UPLOAD_ROOT
 from routers import (
+    applications,
     auth_routes,
     image,
     profile,
@@ -38,9 +39,13 @@ app.include_router(project.router)
 app.include_router(image.router)
 app.include_router(share.router)
 app.include_router(review.router)
+app.include_router(applications.router)
 
 app.mount("/uploads", StaticFiles(directory=UPLOAD_ROOT), name="uploads")
 
+@app.get("/")
+def root():
+    return {"message": "Hello"}
 
 @app.get("/api/health", tags=["health"])
 def health():

@@ -4,7 +4,6 @@ import {
   studentLinks,
   Card,
   Button,
-  AIBox,
   Badge,
   LoadingState,
 } from "../components/Components.jsx";
@@ -14,7 +13,6 @@ import {
   uploadResume,
   deleteResume,
 } from "../services/api.js";
-import { aiFeedback } from "../data.js";
 import { FileText, Upload } from "lucide-react";
 
 const ALLOWED = ["pdf", "docx"];
@@ -141,7 +139,7 @@ export default function ResumeUploadPage() {
             )}
           </div>
 
-          {/* Preview + AI review */}
+          {/* Preview */}
           <div className="space-y-6">
             <Card>
               <h3 className="card-title">Preview</h3>
@@ -155,13 +153,6 @@ export default function ResumeUploadPage() {
                 <div className="preview-box h-48">No resume to preview yet.</div>
               )}
             </Card>
-
-            {/* AI resume review panel (fake AI) */}
-            <AIBox
-              title="AI Resume Review"
-              buttonLabel="Review My Resume"
-              result={aiFeedback.resumeReview}
-            />
           </div>
         </div>
       </main>

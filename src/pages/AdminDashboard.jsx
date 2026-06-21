@@ -3,9 +3,8 @@ import {
   adminLinks,
   Card,
   StatCard,
-  Badge,
 } from "../components/Components.jsx";
-import { analytics, reportedContent } from "../data.js";
+import { analytics } from "../data.js";
 
 // Admin Dashboard - platform-wide metrics and alerts.
 export default function AdminDashboard() {
@@ -30,38 +29,19 @@ export default function AdminDashboard() {
           <StatCard label="Published Portfolios" value={stats.publishedPortfolios} />
           <StatCard label="User Growth" value={stats.userGrowth} accent="teal" />
           <StatCard label="Employer Engagement" value={stats.employerEngagement} />
-          <StatCard label="Moderation Alerts" value={stats.moderationAlerts} accent="teal" />
         </div>
 
-        <div className="content-grid">
-          {/* Review workflow analytics (simple text bars) */}
-          <Card>
-            <h3 className="card-title mb-4">Review Workflow</h3>
-            <div className="space-y-3 text-sm">
-              {/* Each bar is a simple div with a width */}
-              <ReviewBar label="Draft" percent={20} />
-              <ReviewBar label="Needs Revision" percent={35} />
-              <ReviewBar label="Ready" percent={25} />
-              <ReviewBar label="Published" percent={20} />
-            </div>
-          </Card>
-
-          {/* Moderation alerts */}
-          <Card>
-            <h3 className="card-title mb-4">Moderation Alerts</h3>
-            <div className="space-y-3">
-              {reportedContent.map((item) => (
-                <div key={item.id} className="list-row">
-                  <div>
-                    <p className="text-sm font-medium text-gray-800">{item.type}</p>
-                    <p className="text-xs text-gray-500">{item.reason}</p>
-                  </div>
-                  <Badge text={item.status} color="yellow" />
-                </div>
-              ))}
-            </div>
-          </Card>
-        </div>
+        {/* Review workflow analytics (simple text bars) */}
+        <Card>
+          <h3 className="card-title mb-4">Review Workflow</h3>
+          <div className="space-y-3 text-sm">
+            {/* Each bar is a simple div with a width */}
+            <ReviewBar label="Draft" percent={20} />
+            <ReviewBar label="Needs Revision" percent={35} />
+            <ReviewBar label="Ready" percent={25} />
+            <ReviewBar label="Published" percent={20} />
+          </div>
+        </Card>
       </main>
     </div>
   );

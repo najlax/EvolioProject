@@ -22,6 +22,10 @@ class User(Base):
     password_hash = Column(String, nullable=False)
     full_name = Column(String)
     role = Column(String, nullable=False)
+    # Account status: "active" (can use the account) or "pending" (an employer
+    # or coach application is awaiting admin approval). Pending accounts have
+    # no role privileges until approved.
+    status = Column(String, nullable=False, default="active")
     auth_token = Column(String, index=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -42,6 +46,14 @@ class User(Base):
     )
     reviews = relationship(
         "PortfolioReview", back_populates="user", cascade="all, delete-orphan",
+    )
+    applications = relationship(
+        "Application", back_populates="user",
+        cascade="all, delete-orphan",
+        foreign_keys="Application.user_id",
+    )
+    password_resets = relationship(
+        "PasswordResetToken", back_populates="user", cascade="all, delete-orphan",
     )
 
 
@@ -147,6 +159,47 @@ class ShareLink(Base):
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     user = relationship("User", back_populates="share_links")
+
+
+class Application(Base):
+    """An employer or career-coach application submitted at sign-up.
+
+    The applicant's account is created with status="pending" and the requested
+    role; an admin must approve the application before the role's privileges
+    become active. Roles are never self-assigned.
+    """
+
+    __tablename__ = "applications"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    requested_role = Column(String, nullable=False)  # "employer" or "coach"
+    organization = Column(String)  # company (employer) / area of focus (coach)
+    message = Column(Text)  # motivation / extra details from the applicant
+    status = Column(String, nullable=False, default="pending")  # pending/approved/rejected
+    reviewed_by = Column(Integer, ForeignKey("users.id"))  # admin who decided
+    reviewed_at = Column(DateTime)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    user = relationship(
+        "User", back_populates="applications", foreign_keys=[user_id]
+    )
+
+
+class PasswordResetToken(Base):
+    """A short-lived token used to reset a forgotten password."""
+
+    __tablename__ = "password_reset_tokens"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    token = Column(String, unique=True, nullable=False, index=True)
+    used = Column(Boolean, default=False)
+    expires_at = Column(DateTime, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    user = relationship("User", back_populates="password_resets")
 
 
 class PortfolioReview(Base):

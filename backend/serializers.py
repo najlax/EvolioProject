@@ -34,6 +34,7 @@ def user_to_out(user):
         "name": user.full_name or "",
         "email": user.email,
         "role": (user.role or "").lower(),
+        "status": (user.status or "active").lower(),
     }
 
 
@@ -66,6 +67,11 @@ def project_to_out(project):
         "status": project.status or "Draft",
         "featured": bool(project.is_featured),
         "collaborators": _load_list(project.collaborators_json),
+        # Screenshot URLs so portfolio views can show project images.
+        "images": [
+            f"/uploads/project_images/{img.stored_name}"
+            for img in (project.images or [])
+        ],
     }
 
 

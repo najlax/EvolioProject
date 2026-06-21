@@ -75,19 +75,49 @@ def get_current_user(
     return user
 
 
+def require_roles(*allowed_roles: str):
+    """Build a dependency that allows only the given (active) roles.
+
+    The role and account status always come from the database user (never from
+    the client), so the frontend cannot fake its way past these checks. A
+    pending employer/coach application has no privileges until approved.
+    Unauthorized users get a 403.
+    """
+    allowed = {r.lower() for r in allowed_roles}
+
+    def checker(user: User = Depends(get_current_user)) -> User:
+        if (user.status or "active").lower() != "active":
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Your account is pending approval.",
+            )
+        if (user.role or "").lower() not in allowed:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="You do not have permission to perform this action.",
+            )
+        return user
+
+    return checker
+
+
+# Admin routes: admin only.
+require_admin = require_roles("admin")
+# Employer routes: employer and admin.
+require_employer = require_roles("employer", "admin")
+# Coach routes: coach and admin.
+require_coach = require_roles("coach", "admin")
+
+
 def require_student(user: User = Depends(get_current_user)) -> User:
+    if (user.status or "active").lower() != "active":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Your account is pending approval.",
+        )
     if (user.role or "").lower() != "student":
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Only students can perform this action.",
-        )
-    return user
-
-
-def require_employer(user: User = Depends(get_current_user)) -> User:
-    if (user.role or "").lower() != "employer":
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Only employers can perform this action.",
         )
     return user

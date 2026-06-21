@@ -7,6 +7,8 @@ export const API_ORIGIN = API_BASE_URL.replace(/\/api$/, "");
 // ---------------------------------------------------------------------------
 
 const TOKEN_KEY = "evolio_token";
+const ROLE_KEY = "evolio_role";
+const STATUS_KEY = "evolio_status";
 
 export function getToken() {
   return localStorage.getItem(TOKEN_KEY);
@@ -18,6 +20,28 @@ export function setToken(token) {
 
 export function clearToken() {
   localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(ROLE_KEY);
+  localStorage.removeItem(STATUS_KEY);
+}
+
+// Role + status are only used for routing/UI. The backend is the source of
+// truth and re-checks both on every protected request, so a tampered value
+// here can never grant real access.
+export function getRole() {
+  return localStorage.getItem(ROLE_KEY);
+}
+
+export function setRole(role) {
+  if (role) localStorage.setItem(ROLE_KEY, role);
+}
+
+// "active" or "pending" (employer/coach application awaiting approval).
+export function getStatus() {
+  return localStorage.getItem(STATUS_KEY) || "active";
+}
+
+export function setStatus(status) {
+  if (status) localStorage.setItem(STATUS_KEY, status);
 }
 
 
@@ -78,6 +102,37 @@ export function loginUser(data) {
 
 export function getCurrentUser() {
   return request("/auth/me");
+}
+
+export function forgotPassword(email) {
+  return request("/auth/forgot-password", { method: "POST", body: { email } });
+}
+
+export function resetPassword(token, newPassword) {
+  return request("/auth/reset-password", {
+    method: "POST",
+    body: { token, new_password: newPassword },
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Employer / coach applications (admin reviews these)
+// ---------------------------------------------------------------------------
+
+export function getApplications(status = "pending") {
+  return request(`/applications?status=${encodeURIComponent(status)}`);
+}
+
+export function getApplication(id) {
+  return request(`/applications/${id}`);
+}
+
+export function approveApplication(id) {
+  return request(`/applications/${id}/approve`, { method: "POST" });
+}
+
+export function rejectApplication(id) {
+  return request(`/applications/${id}/reject`, { method: "POST" });
 }
 
 // ---------------------------------------------------------------------------

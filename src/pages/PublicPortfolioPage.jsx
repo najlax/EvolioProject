@@ -7,7 +7,7 @@ import {
   LoadingState,
   ErrorState,
 } from "../components/Components.jsx";
-import { getPublicPortfolio } from "../services/api.js";
+import { API_ORIGIN, getPublicPortfolio } from "../services/api.js";
 import { Github, ExternalLink } from "lucide-react";
 
 // Public, no-login view of a student's portfolio, opened via a share token.
@@ -68,6 +68,19 @@ export default function PublicPortfolioPage() {
                 <div className="space-y-4">
                   {projects.map((p) => (
                     <div key={p.id} className="project-item">
+                      {/* Project screenshots, if any were uploaded */}
+                      {p.images && p.images.length > 0 && (
+                        <div className="mb-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
+                          {p.images.map((img, i) => (
+                            <img
+                              key={i}
+                              src={`${API_ORIGIN}${img}`}
+                              alt={`${p.title} screenshot ${i + 1}`}
+                              className="h-28 w-full rounded-lg border border-gray-200 object-cover"
+                            />
+                          ))}
+                        </div>
+                      )}
                       <h3 className="font-medium text-gray-800">{p.title}</h3>
                       <p className="text-sm text-gray-500">{p.summary}</p>
                       <div className="mt-2 flex flex-wrap gap-1">

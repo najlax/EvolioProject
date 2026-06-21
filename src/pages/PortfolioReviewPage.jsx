@@ -87,14 +87,6 @@ export default function PortfolioReviewPage() {
                 All links work
               </label>
             </div>
-
-            {/* AI readiness indicators (fake) */}
-            <h3 className="card-title mb-2 mt-5">AI Readiness Indicators</h3>
-            <div className="flex flex-wrap gap-2">
-              <Badge text="Profile: Good" color="green" />
-              <Badge text="Projects: Needs work" color="yellow" />
-              <Badge text="Resume: Good" color="green" />
-            </div>
           </Card>
 
           {/* Feedback form + status buttons */}

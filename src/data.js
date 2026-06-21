@@ -262,7 +262,6 @@ export const analytics = {
     publishedPortfolios: 180,
     userGrowth: "+12%",
     employerEngagement: "+8%",
-    moderationAlerts: 3,
   },
 };
 
@@ -321,20 +320,3 @@ export const aiFeedback = {
   candidateBotAnswer:
     "This candidate has strong React and frontend skills, 2 published projects, and an uploaded resume. They appear ready for junior frontend roles.",
 };
-
-export const reportedContent = [
-  {
-    id: "rc1",
-    type: "Portfolio",
-    owner: "Marcus Lee",
-    reason: "Possible copied project description",
-    status: "Pending",
-  },
-  {
-    id: "rc2",
-    type: "Project",
-    owner: "Priya Patel",
-    reason: "Broken demo link reported by employer",
-    status: "Pending",
-  },
-];

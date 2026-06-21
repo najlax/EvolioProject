@@ -8,7 +8,23 @@ class RegisterRequest(BaseModel):
     name: str
     email: str
     password: str = Field(min_length=8)
+    # Chosen on the account-type selection step: "student" (default),
+    # "employer" or "coach". Student accounts are activated immediately;
+    # employer/coach create a PENDING application that an admin must approve.
+    # The role/privileges are never self-assigned here.
+    account_type: str = "student"
+    # Extra application details (employer/coach only).
+    organization: str = ""   # company name (employer) / area of focus (coach)
+    message: str = ""        # motivation / extra context
+
+
+class RegisterOut(BaseModel):
+    id: int
+    name: str
+    email: str
     role: str
+    status: str                       # "active" or "pending"
+    application_status: str = "none"  # "none" | "pending"
 
 
 class LoginRequest(BaseModel):
@@ -21,6 +37,7 @@ class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
     role: str
+    status: str = "active"
 
 
 class UserOut(BaseModel):
@@ -28,6 +45,34 @@ class UserOut(BaseModel):
     name: str
     email: str
     role: str
+    status: str = "active"
+
+
+class MessageOut(BaseModel):
+    message: str
+
+
+class ForgotPasswordRequest(BaseModel):
+    email: str
+
+
+class ResetPasswordRequest(BaseModel):
+    token: str
+    new_password: str = Field(min_length=8)
+
+
+# Employer / coach applications
+
+class ApplicationOut(BaseModel):
+    id: int
+    user_id: int
+    user_name: str = ""
+    user_email: str = ""
+    requested_role: str
+    organization: str = ""
+    message: str = ""
+    status: str
+    created_at: str = ""
 
 
 # Profile
@@ -78,6 +123,7 @@ class ProjectIn(BaseModel):
 class ProjectOut(ProjectIn):
     id: int
     owner_id: int
+    images: List[str] = []
 
 
 class ProjectContentIn(BaseModel):

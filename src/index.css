@@ -198,16 +198,6 @@ body {
     @apply h-2 rounded-full bg-[#199DB2];
   }
 
-  /* ------------------------- AI sections ------------------------- */
-
-  .ai-box {
-    @apply rounded-xl border border-[#199DB2]/30 bg-[#E1F4F7] p-5 shadow-sm;
-  }
-
-  .ai-result {
-    @apply mb-3 rounded-lg bg-white p-3 text-sm text-gray-700;
-  }
-
   /* ------------------------- Modals ------------------------- */
   .modal-backdrop {
     @apply fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4;

@@ -13,6 +13,8 @@ from sqlalchemy import text  # noqa: E402
 
 from auth.auth import hash_password, verify_password  # noqa: E402
 from db.models import (  # noqa: E402
+    Application,
+    PasswordResetToken,
     PortfolioReview,
     Project,
     ProjectImage,
@@ -25,6 +27,12 @@ from db.session import SessionLocal, init_db  # noqa: E402
 from storage import IMAGE_DIR, RESUME_DIR  # noqa: E402
 
 STUDENT_PASSWORD = "12345678"
+
+# A default admin so the admin dashboard can be tested out of the box.
+# In production, create admins with create_admin.py instead.
+ADMIN_EMAIL = "admin@evolio.dev"
+ADMIN_PASSWORD = "admin12345"
+ADMIN_NAME = "Site Administrator"
 
 
 # =============================================================================
@@ -839,7 +847,8 @@ def clear_upload_dir(folder):
 def clear_data(db):
     cleared = {}
     for model in (ProjectImage, Project, Resume, ShareLink,
-                  PortfolioReview, StudentProfile, User):
+                  PortfolioReview, Application, PasswordResetToken,
+                  StudentProfile, User):
         cleared[model.__tablename__] = db.query(model).delete(
             synchronize_session=False
         )
@@ -860,7 +869,20 @@ def seed(db):
     pw_hash = hash_password(STUDENT_PASSWORD)
 
     counts = {"users": 0, "profiles": 0, "resumes": 0, "projects": 0,
-              "images": 0, "share_links": 0, "reviews": 0}
+              "images": 0, "share_links": 0, "reviews": 0, "admins": 0}
+
+    # Default admin account (manual/seeded only — never via the public API).
+    admin = User(
+        email=ADMIN_EMAIL,
+        password_hash=hash_password(ADMIN_PASSWORD),
+        full_name=ADMIN_NAME,
+        role="admin",
+        created_at=now,
+        updated_at=now,
+    )
+    db.add(admin)
+    counts["users"] += 1
+    counts["admins"] += 1
 
     for s in STUDENTS:
         # User
@@ -1013,20 +1035,29 @@ def validate(db):
     n_images = db.query(ProjectImage).count()
     n_reviews = db.query(PortfolioReview).count()
 
-    expected = {"students": (n_users, 10), "projects": (n_projects, 20),
+    n_admins = db.query(User).filter_by(role="admin").count()
+
+    # 10 students + 1 admin = 11 users.
+    expected = {"users": (n_users, 11), "admins": (n_admins, 1),
+                "projects": (n_projects, 20),
                 "resumes": (n_resumes, 10), "images": (n_images, 10),
                 "reviews": (n_reviews, 5)}
     for label, (got, want) in expected.items():
         if got != want:
             problems.append(f"Expected {want} {label}, found {got}.")
 
-    # Every student can log in and has a resume.
-    for user in db.query(User).all():
+    # Every student can log in and has a resume (admins are checked separately).
+    for user in db.query(User).filter_by(role="student").all():
         if not verify_password(STUDENT_PASSWORD, user.password_hash):
             problems.append(f"Login failed for {user.email}.")
         resume = db.query(Resume).filter_by(user_id=user.id).first()
         if resume is None:
             problems.append(f"No resume for {user.email}.")
+
+    # The admin can log in too.
+    admin = db.query(User).filter_by(role="admin").first()
+    if admin is None or not verify_password(ADMIN_PASSWORD, admin.password_hash):
+        problems.append("Admin login check failed.")
 
     # All resume + image files exist on disk.
     for resume in db.query(Resume).all():

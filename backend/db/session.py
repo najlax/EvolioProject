@@ -40,6 +40,7 @@ def init_db():
     added_columns = {
         "student_profiles": [("github", "VARCHAR"), ("linkedin", "VARCHAR")],
         "projects": [("content", "TEXT")],
+        "users": [("status", "VARCHAR")],
     }
     with engine.begin() as conn:
         tables = _existing_tables(conn)
@@ -52,3 +53,23 @@ def init_db():
                     conn.exec_driver_sql(
                         f'ALTER TABLE "{table}" ADD COLUMN {name} {col_type}'
                     )
+
+        # Existing accounts have no status yet -> treat them as active.
+        if "users" in tables:
+            conn.exec_driver_sql(
+                "UPDATE users SET status = 'active' WHERE status IS NULL"
+            )
+
+        # One-time migration: the old "role_upgrade_requests" table (from the
+        # previous dashboard-application workflow) is replaced by "applications".
+        # Copy any rows over, then drop the obsolete table.
+        if "role_upgrade_requests" in tables and "applications" in tables:
+            conn.exec_driver_sql(
+                "INSERT INTO applications "
+                "(id, user_id, requested_role, message, status, "
+                " reviewed_by, created_at, updated_at) "
+                "SELECT id, user_id, requested_role, message, status, "
+                " reviewed_by, created_at, updated_at "
+                "FROM role_upgrade_requests"
+            )
+            conn.exec_driver_sql("DROP TABLE role_upgrade_requests")

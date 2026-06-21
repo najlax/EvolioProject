@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Navbar, Card, Input, Button } from "../components/Components.jsx";
+import { loginUser, setToken, setRole, setStatus } from "../services/api.js";
 
-// Employer Login Page - a login form just for employers (mock only).
+// Employer Login Page - a login form just for employers.
 export default function EmployerLoginPage() {
   const navigate = useNavigate();
 
@@ -10,16 +11,35 @@ export default function EmployerLoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  function handleLogin(e) {
+  // Real login against the backend. Only employer (or admin) accounts may use
+  // the employer area; everyone else is told to use the normal sign in.
+  async function handleLogin(e) {
     e.preventDefault();
-    // Basic validation
     if (!email || !password) {
       setError("Please enter your email and password.");
       return;
     }
     setError("");
-    // Send the employer to their dashboard
-    navigate("/employer/dashboard");
+
+    try {
+      const data = await loginUser({ email, password });
+      if (data.status === "pending") {
+        setError(
+          "Your employer application is still pending admin approval."
+        );
+        return;
+      }
+      if (data.role !== "employer" && data.role !== "admin") {
+        setError("This account is not an employer. Please use the normal sign in.");
+        return;
+      }
+      setToken(data.access_token);
+      setRole(data.role);
+      setStatus(data.status);
+      navigate("/employer/dashboard");
+    } catch (err) {
+      setError(err.message || "Login failed. Please try again.");
+    }
   }
 
   return (

@@ -6,7 +6,6 @@ import {
   StatCard,
   Card,
   Button,
-  AIBox,
   Badge,
   LoadingState,
 } from "../components/Components.jsx";
@@ -58,13 +57,6 @@ export default function StudentDashboard() {
       .finally(() => setLoading(false));
   }, []);
 
-  // Engagement counters are not tracked by the backend yet (sample numbers).
-  const demoMetrics = {
-    portfolioViews: 240,
-    resumeDownloads: 32,
-    demoClicks: 28,
-  };
-
   const completion = profileCompletion(profile);
   const publishedCount = projects.filter((p) => p.status === "Published").length;
   const draftCount = projects.filter((p) => p.status !== "Published").length;
@@ -109,17 +101,11 @@ export default function StudentDashboard() {
             </div>
 
             {/* Numbers grid */}
-            <div className="mb-2 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mb-6 grid gap-4 sm:grid-cols-3">
               <StatCard label="Projects" value={projects.length} />
               <StatCard label="Published" value={publishedCount} accent="teal" />
               <StatCard label="Drafts" value={draftCount} />
-              <StatCard label="Portfolio Views" value={demoMetrics.portfolioViews} accent="teal" />
-              <StatCard label="Resume Downloads" value={demoMetrics.resumeDownloads} />
-              <StatCard label="Demo Clicks" value={demoMetrics.demoClicks} accent="teal" />
             </div>
-            <p className="mb-6 text-xs text-gray-400">
-              Engagement metrics (views, downloads, clicks) are sample data.
-            </p>
 
             {/* Quick links */}
             <div className="mb-6 flex flex-wrap gap-3">
@@ -129,17 +115,10 @@ export default function StudentDashboard() {
               <Link to="/student/projects">
                 <Button variant="outline">Manage Projects</Button>
               </Link>
-              <Link to="/student/review">
-                <Button variant="teal">Submit for Review</Button>
+              <Link to="/student/portfolio">
+                <Button variant="teal">Preview Portfolio</Button>
               </Link>
             </div>
-
-            {/* AI readiness summary (fake AI) */}
-            <AIBox
-              title="AI Readiness Summary"
-              buttonLabel="Check My Readiness"
-              result="You're 85% job ready! Finish your profile and publish 1 more project to reach 100%."
-            />
           </>
         )}
       </main>

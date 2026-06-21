@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import {
-  Sparkles,
   Loader2,
   AlertTriangle,
   Inbox,
@@ -265,49 +263,6 @@ export function Sidebar({ title, links }) {
 }
 
 // -------------------------------------------------------------
-// AIBox
-// A reusable "AI" panel. It is 100% FAKE.
-// Click the button -> show a loading spinner -> after a short
-// setTimeout, show the result text. No real AI is used.
-// -------------------------------------------------------------
-export function AIBox({ title, buttonLabel = "Generate with AI", result }) {
-  const [loading, setLoading] = useState(false);
-  const [showResult, setShowResult] = useState(false);
-
-  // Pretend to call AI by waiting ~1.5 seconds
-  function runFakeAI() {
-    setShowResult(false);
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setShowResult(true);
-    }, 1500);
-  }
-
-  return (
-    <div className="ai-box">
-      <div className="mb-3 flex items-center gap-2">
-        <Sparkles className="h-5 w-5 text-[#199DB2]" />
-        <h3 className="font-semibold text-gray-800">{title}</h3>
-      </div>
-
-      {/* Show loading, then result, then a button to (re)run */}
-      {loading ? (
-        <LoadingState message="AI is thinking..." />
-      ) : showResult ? (
-        <div className="ai-result">{result}</div>
-      ) : (
-        <p className="mb-3 text-sm text-gray-500">Click the button to get AI suggestions.</p>
-      )}
-
-      <Button variant="teal" onClick={runFakeAI}>
-        {buttonLabel}
-      </Button>
-    </div>
-  );
-}
-
-// -------------------------------------------------------------
 // Sidebar link lists (one per role)
 // Kept here so every dashboard page can reuse the same menu.
 // -------------------------------------------------------------
@@ -335,6 +290,6 @@ export const adminLinks = [
   { label: "Users", to: "/admin/users" },
   { label: "Employers", to: "/admin/employers" },
   { label: "Coaches", to: "/admin/coaches" },
-  { label: "Moderation", to: "/admin/moderation" },
+  { label: "Applications", to: "/admin/applications" },
   { label: "Settings", to: "/admin/settings" },
 ];

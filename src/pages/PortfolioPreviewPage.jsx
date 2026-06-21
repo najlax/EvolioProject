@@ -6,8 +6,6 @@ import {
   Button,
   Badge,
   Input,
-  Modal,
-  AIBox,
   LoadingState,
 } from "../components/Components.jsx";
 import {
@@ -18,8 +16,7 @@ import {
   generateShareLink,
   updateShareSettings,
 } from "../services/api.js";
-import { aiFeedback } from "../data.js";
-import { Github, ExternalLink, Bot } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
 
 // Portfolio Preview Page - shows how the student's public portfolio looks.
 export default function PortfolioPreviewPage() {
@@ -31,10 +28,6 @@ export default function PortfolioPreviewPage() {
   const [resume, setResume] = useState(null);
   const [shareUrl, setShareUrl] = useState("");
   const [isPublic, setIsPublic] = useState(true);
-
-  // Bot modal (mock)
-  const [botOpen, setBotOpen] = useState(false);
-  const [botLoading, setBotLoading] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -63,12 +56,6 @@ export default function PortfolioPreviewPage() {
     } catch (err) {
       setError(err.message || "Could not update sharing settings.");
     }
-  }
-
-  function askBot() {
-    setBotOpen(true);
-    setBotLoading(true);
-    setTimeout(() => setBotLoading(false), 1500);
   }
 
   if (loading) {
@@ -144,6 +131,24 @@ export default function PortfolioPreviewPage() {
                 <div className="space-y-4">
                   {featured.map((p) => (
                     <div key={p.id} className="project-item">
+                      {/* Project screenshots (from uploaded project images) */}
+                      {p.images && p.images.length > 0 ? (
+                        <div className="mb-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
+                          {p.images.map((img, i) => (
+                            <img
+                              key={i}
+                              src={`${API_ORIGIN}${img}`}
+                              alt={`${p.title} screenshot ${i + 1}`}
+                              className="h-28 w-full rounded-lg border border-gray-200 object-cover"
+                            />
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="mb-3 flex h-28 items-center justify-center rounded-lg border border-dashed border-gray-200 bg-gray-50 text-xs text-gray-400">
+                          No screenshots added yet
+                        </div>
+                      )}
+
                       <h4 className="font-medium text-gray-800">{p.title}</h4>
                       <p className="text-sm text-gray-500">{p.summary}</p>
 
@@ -172,7 +177,7 @@ export default function PortfolioPreviewPage() {
             </Card>
           </div>
 
-          {/* Right: stats, share settings, AI, bot */}
+          {/* Right: stats + share settings */}
           <div className="space-y-6">
             <Card>
               <p className="text-sm text-gray-500">Published Projects</p>
@@ -192,40 +197,9 @@ export default function PortfolioPreviewPage() {
                 Make portfolio public
               </label>
             </Card>
-
-            {/* AI portfolio score (mock) */}
-            <AIBox
-              title="AI Portfolio Score"
-              buttonLabel="Score My Portfolio"
-              result={`Score: ${aiFeedback.portfolioScore}/100. ${aiFeedback.portfolioScoreText}`}
-            />
-
-            {/* Ask About This Candidate bot (mock) */}
-            <Card>
-              <div className="mb-3 flex items-center gap-2">
-                <Bot className="h-5 w-5 text-[#001776]" />
-                <h3 className="font-semibold text-gray-800">Ask About This Candidate</h3>
-              </div>
-              <p className="mb-3 text-sm text-gray-500">
-                Employers can ask the AI bot questions about this candidate.
-              </p>
-              <Button onClick={askBot}>Ask the Bot</Button>
-            </Card>
           </div>
         </div>
       </main>
-
-      {/* Bot modal (fake AI) */}
-      <Modal open={botOpen} onClose={() => setBotOpen(false)} title="Candidate Bot">
-        {botLoading ? (
-          <LoadingState message="Bot is thinking..." />
-        ) : (
-          <div>
-            <p className="mb-4 text-sm text-gray-700">{aiFeedback.candidateBotAnswer}</p>
-            <Button onClick={() => setBotOpen(false)}>Close</Button>
-          </div>
-        )}
-      </Modal>
     </div>
   );
 }

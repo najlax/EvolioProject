@@ -7,7 +7,6 @@ import {
   Input,
   Textarea,
   Button,
-  AIBox,
   LoadingState,
 } from "../components/Components.jsx";
 import {
@@ -18,7 +17,6 @@ import {
   updateProject,
   uploadProjectImage,
 } from "../services/api.js";
-import { aiFeedback } from "../data.js";
 import { ImagePlus, X } from "lucide-react";
 
 // Add/Edit Project Page - one form used for BOTH adding and editing.
@@ -126,9 +124,8 @@ export default function AddEditProjectPage() {
         {loading ? (
           <LoadingState message="Loading project..." />
         ) : (
-          <div className="content-grid-3">
-            {/* The form takes 2 columns */}
-            <div className="lg:col-span-2">
+          <div className="max-w-3xl">
+            <div>
               <Card>
                 {error && <p className="alert-error">{error}</p>}
 
@@ -250,15 +247,6 @@ export default function AddEditProjectPage() {
                   </div>
                 </form>
               </Card>
-            </div>
-
-            {/* AI summary helper on the side (mock) */}
-            <div>
-              <AIBox
-                title="AI Project Summary"
-                buttonLabel="Generate Summary"
-                result={aiFeedback.projectSummary}
-              />
             </div>
           </div>
         )}
