@@ -1,0 +1,149 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 4217 >>
+stream
+0.12 0.17 0.31 rg
+BT /F2 23 Tf 56 728 Td (Omar Abdullah) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 11.5 Tf 56 701 Td (Software Engineer | Backend & Full-Stack Developer) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 684 Td (omar.abdullah@evolio.dev | Riyadh, Saudi Arabia | https://linkedin.com/in/omar-abdullah |) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 671 Td (https://github.com/omar-abdullah) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 654 m 556 654 l S
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 639 Td (PROFESSIONAL SUMMARY) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 633 m 556 633 l S
+BT /F1 10.5 Tf 56 620 Td (Software engineer focused on designing reliable, well-tested backend services and clean) Tj ET
+BT /F1 10.5 Tf 56 605.51 Td (full-stack applications. Comfortable owning a feature end to end, from API design and database) Tj ET
+BT /F1 10.5 Tf 56 591.02 Td (modelling to deployment and monitoring.) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 565.53 Td (EDUCATION) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 559.53 m 556 559.53 l S
+BT /F1 10.5 Tf 56 546.53 Td (B.Sc. in Software Engineering, King Saud University \(2021-2025\).) Tj ET
+0.4 0.4 0.4 rg
+BT /F1 10 Tf 56 530.04 Td (Field of specialization: Software Engineering) Tj ET
+0 0 0 rg
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 505.24 Td (CORE SKILLS) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 499.24 m 556 499.24 l S
+BT /F1 10.5 Tf 56 486.24 Td (Python, FastAPI, REST APIs, SQL, Docker, Git, Testing, System Design) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 460.75 Td (TOOLS & TECHNOLOGIES) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 454.75 m 556 454.75 l S
+BT /F1 10.5 Tf 56 441.75 Td (FastAPI, PostgreSQL, Docker, GitHub Actions, Postman, VS Code) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 416.26 Td (PROJECTS & ACADEMIC EXPERIENCE) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 410.26 m 556 410.26 l S
+0.12 0.17 0.31 rg
+BT /F2 10.8 Tf 56 391.26 Td (Task Management API) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 376.36 Td (Role: Lead Backend Developer - Duration: 3 months) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 56 362.94 Td (Designed and built a multi-tenant task management REST API with JWT authentication, role-based) Tj ET
+BT /F1 10 Tf 56 349.14 Td (access, and full CRUD for projects, tasks, and comments. Includes pagination, filtering, and) Tj ET
+BT /F1 10 Tf 56 335.34 Td (automated tests covering core flows.) Tj ET
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 320.54 Td (Tech stack: Python, FastAPI, PostgreSQL, JWT, Pytest, Docker) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 308.12 Td (Outcome: Reached 95% test coverage and handled 500+ concurrent requests in load testing.) Tj ET
+0 0 0 rg
+0.12 0.17 0.31 rg
+BT /F2 10.8 Tf 56 289.7 Td (Student Portfolio Platform) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 274.79 Td (Role: Full-Stack Developer - Duration: 4 months) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 56 261.37 Td (Built a full-stack platform that lets students create profiles, showcase projects, upload resumes,) Tj ET
+BT /F1 10 Tf 56 247.57 Td (and share public portfolio links. Implemented secure file uploads and a responsive React UI.) Tj ET
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 232.77 Td (Tech stack: React, FastAPI, SQLite, Tailwind CSS, JWT) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 220.35 Td (Outcome: Adopted by 60+ students in a pilot program with positive feedback.) Tj ET
+0 0 0 rg
+0.12 0.17 0.31 rg
+BT /F2 10.8 Tf 56 201.93 Td (Appointment Booking System) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 187.03 Td (Role: Backend Developer - Duration: 2 months) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 56 173.61 Td (Developed an appointment booking system supporting availability slots, conflict detection, and) Tj ET
+BT /F1 10 Tf 56 159.81 Td (automated email reminders. Built a clean admin dashboard for managing bookings.) Tj ET
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 145.01 Td (Tech stack: Python, FastAPI, PostgreSQL, Celery, React) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 132.59 Td (Outcome: Cut no-shows by 30% in a small-clinic trial through reminders.) Tj ET
+0 0 0 rg
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 109.17 Td (TARGET ROLES) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 103.17 m 556 103.17 l S
+BT /F1 10.5 Tf 56 90.17 Td (Backend Engineer, Full-Stack Developer, Software Engineer) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 787 >>
+stream
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 728 Td (ACHIEVEMENTS) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 722 m 556 722 l S
+BT /F1 10.5 Tf 64 709 Td (- Led a 4-person capstone team to deliver a production-ready API.) Tj ET
+BT /F1 10.5 Tf 64 694.51 Td (- Reduced API response times by 40% through query optimization.) Tj ET
+BT /F1 10.5 Tf 64 680.02 Td (- Graduated with First-Class Honours in Software Engineering.) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 654.53 Td (PORTFOLIO & LINKS) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 648.53 m 556 648.53 l S
+BT /F1 10.5 Tf 56 635.53 Td (LinkedIn: https://linkedin.com/in/omar-abdullah) Tj ET
+BT /F1 10.5 Tf 56 621.04 Td (GitHub / Portfolio: https://github.com/omar-abdullah) Tj ET
+BT /F1 10.5 Tf 56 606.55 Td (Contact: omar.abdullah@evolio.dev) Tj ET
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000218 00000 n 
+0000000320 00000 n 
+0000000456 00000 n 
+0000004725 00000 n 
+0000004861 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+5699
+%%EOF

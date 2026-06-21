@@ -1,0 +1,133 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 3924 >>
+stream
+0.12 0.17 0.31 rg
+BT /F2 23 Tf 56 728 Td (Zainab Al-Ahmad) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 11.5 Tf 56 701 Td (IT Specialist | Support Systems & Infrastructure) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 684 Td (zainab.alahmad@evolio.dev | Medina, Saudi Arabia | https://linkedin.com/in/zainab-alahmad-it |) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 671 Td (https://github.com/zainab-alahmad-it) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 654 m 556 654 l S
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 639 Td (PROFESSIONAL SUMMARY) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 633 m 556 633 l S
+BT /F1 10.5 Tf 56 620 Td (IT specialist focused on keeping systems and people running smoothly. Experienced in building) Tj ET
+BT /F1 10.5 Tf 56 605.51 Td (helpdesk and asset-management tools and supporting end users.) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 580.02 Td (EDUCATION) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 574.02 m 556 574.02 l S
+BT /F1 10.5 Tf 56 561.02 Td (B.Sc. in Information Technology, Taibah University \(2021-2025\).) Tj ET
+0.4 0.4 0.4 rg
+BT /F1 10 Tf 56 544.53 Td (Field of specialization: Information Technology) Tj ET
+0 0 0 rg
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 519.73 Td (CORE SKILLS) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 513.73 m 556 513.73 l S
+BT /F1 10.5 Tf 56 500.73 Td (IT Support, Networking, SQL, Python, System Administration, Troubleshooting) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 475.24 Td (TOOLS & TECHNOLOGIES) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 469.24 m 556 469.24 l S
+BT /F1 10.5 Tf 56 456.24 Td (Windows Server, Active Directory, MySQL, PowerShell, Django, Zabbix) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 430.75 Td (PROJECTS & ACADEMIC EXPERIENCE) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 424.75 m 556 424.75 l S
+0.12 0.17 0.31 rg
+BT /F2 10.8 Tf 56 405.75 Td (IT Helpdesk System) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 390.85 Td (Role: IT Developer - Duration: 3 months) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 56 377.43 Td (Built an IT helpdesk system with ticket creation, prioritization, assignment, and SLA tracking, plus) Tj ET
+BT /F1 10 Tf 56 363.63 Td (a knowledge base for common issues.) Tj ET
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 348.83 Td (Tech stack: Django, MySQL, Bootstrap, Python) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 336.41 Td (Outcome: Centralized 500+ tickets and cut response time by 40%.) Tj ET
+0 0 0 rg
+0.12 0.17 0.31 rg
+BT /F2 10.8 Tf 56 317.99 Td (Asset Management Dashboard) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 303.08 Td (Role: IT Specialist - Duration: 2 months) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 56 289.66 Td (Developed a dashboard to track hardware assets, software licenses, and assignments, with expiry) Tj ET
+BT /F1 10 Tf 56 275.86 Td (alerts and exportable reports.) Tj ET
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 261.06 Td (Tech stack: Python, Flask, PostgreSQL, Chart.js) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 248.64 Td (Outcome: Tracked 250+ assets and flagged 18 expiring licenses.) Tj ET
+0 0 0 rg
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 225.22 Td (TARGET ROLES) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 219.22 m 556 219.22 l S
+BT /F1 10.5 Tf 56 206.22 Td (IT Specialist, Systems Administrator, IT Support Engineer) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 180.73 Td (ACHIEVEMENTS) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 174.73 m 556 174.73 l S
+BT /F1 10.5 Tf 64 161.73 Td (- Built a helpdesk system used by a 40-person department.) Tj ET
+BT /F1 10.5 Tf 64 147.24 Td (- Automated asset tracking, eliminating a monthly manual audit.) Tj ET
+BT /F1 10.5 Tf 64 132.75 Td (- Maintained 99% uptime for a lab server during final year.) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 107.26 Td (PORTFOLIO & LINKS) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 101.26 m 556 101.26 l S
+BT /F1 10.5 Tf 56 88.26 Td (LinkedIn: https://linkedin.com/in/zainab-alahmad-it) Tj ET
+BT /F1 10.5 Tf 56 73.77 Td (GitHub / Portfolio: https://github.com/zainab-alahmad-it) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 67 >>
+stream
+BT /F1 10.5 Tf 56 728 Td (Contact: zainab.alahmad@evolio.dev) Tj ET
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000218 00000 n 
+0000000320 00000 n 
+0000000456 00000 n 
+0000004432 00000 n 
+0000004568 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+4685
+%%EOF

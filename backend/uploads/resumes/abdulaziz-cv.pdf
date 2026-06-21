@@ -1,0 +1,133 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 4005 >>
+stream
+0.12 0.17 0.31 rg
+BT /F2 23 Tf 56 728 Td (Abdulaziz) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 11.5 Tf 56 701 Td (Cybersecurity Analyst | Application & Network Security) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 684 Td (abdulaziz@evolio.dev | Dammam, Saudi Arabia | https://linkedin.com/in/abdulaziz-sec |) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 671 Td (https://github.com/abdulaziz-sec) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 654 m 556 654 l S
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 639 Td (PROFESSIONAL SUMMARY) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 633 m 556 633 l S
+BT /F1 10.5 Tf 56 620 Td (Security-minded engineer focused on finding and fixing vulnerabilities before attackers do.) Tj ET
+BT /F1 10.5 Tf 56 605.51 Td (Hands-on with vulnerability scanning, secure coding practices, and security awareness training.) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 580.02 Td (EDUCATION) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 574.02 m 556 574.02 l S
+BT /F1 10.5 Tf 56 561.02 Td (B.Sc. in Cybersecurity, KFUPM \(2021-2025\).) Tj ET
+0.4 0.4 0.4 rg
+BT /F1 10 Tf 56 544.53 Td (Field of specialization: Cybersecurity) Tj ET
+0 0 0 rg
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 519.73 Td (CORE SKILLS) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 513.73 m 556 513.73 l S
+BT /F1 10.5 Tf 56 500.73 Td (Network Security, Python, Penetration Testing, Linux, OWASP, Threat Analysis) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 475.24 Td (TOOLS & TECHNOLOGIES) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 469.24 m 556 469.24 l S
+BT /F1 10.5 Tf 56 456.24 Td (Nmap, Burp Suite, Wireshark, Metasploit, Python, Kali Linux) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 430.75 Td (PROJECTS & ACADEMIC EXPERIENCE) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 424.75 m 556 424.75 l S
+0.12 0.17 0.31 rg
+BT /F2 10.8 Tf 56 405.75 Td (Vulnerability Scanner) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 390.85 Td (Role: Security Engineer - Duration: 3 months) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 56 377.43 Td (Developed a Python-based scanner that detects common web vulnerabilities such as outdated headers,) Tj ET
+BT /F1 10 Tf 56 363.63 Td (open ports, and basic injection points, producing a prioritized, human-readable report.) Tj ET
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 348.83 Td (Tech stack: Python, Nmap, Requests, SQLite, Linux) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 336.41 Td (Outcome: Surfaced 12 misconfigurations across test environments.) Tj ET
+0 0 0 rg
+0.12 0.17 0.31 rg
+BT /F2 10.8 Tf 56 317.99 Td (Phishing Awareness Platform) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 303.08 Td (Role: Full-Stack Security Developer - Duration: 2 months) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 56 289.66 Td (Built a platform to run controlled phishing simulations and track click rates, then deliver targeted) Tj ET
+BT /F1 10 Tf 56 275.86 Td (micro-training to users who fall for simulated attacks.) Tj ET
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 261.06 Td (Tech stack: Python, Flask, PostgreSQL, Bootstrap) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 248.64 Td (Outcome: Reduced simulated-phishing click rate from 34% to 11%.) Tj ET
+0 0 0 rg
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 225.22 Td (TARGET ROLES) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 219.22 m 556 219.22 l S
+BT /F1 10.5 Tf 56 206.22 Td (Security Analyst, Penetration Tester, SOC Analyst) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 180.73 Td (ACHIEVEMENTS) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 174.73 m 556 174.73 l S
+BT /F1 10.5 Tf 64 161.73 Td (- Reported 3 valid vulnerabilities through a university bug program.) Tj ET
+BT /F1 10.5 Tf 64 147.24 Td (- Built a phishing-awareness program used in a 200-person workshop.) Tj ET
+BT /F1 10.5 Tf 64 132.75 Td (- Holds an entry-level security certification.) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 107.26 Td (PORTFOLIO & LINKS) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 101.26 m 556 101.26 l S
+BT /F1 10.5 Tf 56 88.26 Td (LinkedIn: https://linkedin.com/in/abdulaziz-sec) Tj ET
+BT /F1 10.5 Tf 56 73.77 Td (GitHub / Portfolio: https://github.com/abdulaziz-sec) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 62 >>
+stream
+BT /F1 10.5 Tf 56 728 Td (Contact: abdulaziz@evolio.dev) Tj ET
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000218 00000 n 
+0000000320 00000 n 
+0000000456 00000 n 
+0000004513 00000 n 
+0000004649 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+4761
+%%EOF

@@ -1,0 +1,133 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 3943 >>
+stream
+0.12 0.17 0.31 rg
+BT /F2 23 Tf 56 728 Td (Ibrahim Jameel) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 11.5 Tf 56 701 Td (Computer Engineer | Embedded Systems & IoT) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 684 Td (ibrahim.jameel@evolio.dev | Khobar, Saudi Arabia | https://linkedin.com/in/ibrahim-jameel-ce |) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 671 Td (https://github.com/ibrahim-jameel-ce) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 654 m 556 654 l S
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 639 Td (PROFESSIONAL SUMMARY) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 633 m 556 633 l S
+BT /F1 10.5 Tf 56 620 Td (Computer engineer passionate about connecting hardware and software. Builds embedded and IoT) Tj ET
+BT /F1 10.5 Tf 56 605.51 Td (systems with real-time monitoring dashboards and reliable firmware.) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 580.02 Td (EDUCATION) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 574.02 m 556 574.02 l S
+BT /F1 10.5 Tf 56 561.02 Td (B.Sc. in Computer Engineering, KFUPM \(2021-2025\).) Tj ET
+0.4 0.4 0.4 rg
+BT /F1 10 Tf 56 544.53 Td (Field of specialization: Computer Engineering) Tj ET
+0 0 0 rg
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 519.73 Td (CORE SKILLS) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 513.73 m 556 513.73 l S
+BT /F1 10.5 Tf 56 500.73 Td (C, C++, Embedded Systems, IoT, Python, Microcontrollers, RTOS) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 475.24 Td (TOOLS & TECHNOLOGIES) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 469.24 m 556 469.24 l S
+BT /F1 10.5 Tf 56 456.24 Td (Arduino, Raspberry Pi, ESP32, PlatformIO, MQTT, Grafana) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 430.75 Td (PROJECTS & ACADEMIC EXPERIENCE) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 424.75 m 556 424.75 l S
+0.12 0.17 0.31 rg
+BT /F2 10.8 Tf 56 405.75 Td (IoT Device Monitoring System) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 390.85 Td (Role: Embedded Engineer - Duration: 3 months) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 56 377.43 Td (Built an IoT monitoring system that collects sensor data over MQTT, stores time-series readings, and) Tj ET
+BT /F1 10 Tf 56 363.63 Td (visualizes them on a live dashboard with alerting thresholds.) Tj ET
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 348.83 Td (Tech stack: ESP32, MQTT, Python, InfluxDB, Grafana) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 336.41 Td (Outcome: Monitored 15 sensor nodes with sub-second update latency.) Tj ET
+0 0 0 rg
+0.12 0.17 0.31 rg
+BT /F2 10.8 Tf 56 317.99 Td (Hardware Monitoring App) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 303.08 Td (Role: Computer Engineer - Duration: 2 months) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 56 289.66 Td (Developed a cross-platform app that reads temperature, CPU, and voltage data from a microcontroller) Tj ET
+BT /F1 10 Tf 56 275.86 Td (and displays it with historical graphs and warnings.) Tj ET
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 261.06 Td (Tech stack: C++, Python, Qt, Arduino, Serial) Tj ET
+0 0 0 rg
+0.4 0.4 0.4 rg
+BT /F1 9 Tf 56 248.64 Td (Outcome: Detected thermal issues 5x faster than manual checks.) Tj ET
+0 0 0 rg
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 225.22 Td (TARGET ROLES) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 219.22 m 556 219.22 l S
+BT /F1 10.5 Tf 56 206.22 Td (Embedded Engineer, IoT Developer, Firmware Engineer) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 180.73 Td (ACHIEVEMENTS) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 174.73 m 556 174.73 l S
+BT /F1 10.5 Tf 64 161.73 Td (- Won 2nd place in a university IoT design competition.) Tj ET
+BT /F1 10.5 Tf 64 147.24 Td (- Built a low-cost air-quality monitor used in a campus lab.) Tj ET
+BT /F1 10.5 Tf 64 132.75 Td (- Published an open-source firmware library with 40+ stars.) Tj ET
+0.12 0.17 0.31 rg
+BT /F2 12.5 Tf 56 107.26 Td (PORTFOLIO & LINKS) Tj ET
+0 0 0 rg
+0.78 0.8 0.85 RG 0.8 w 56 101.26 m 556 101.26 l S
+BT /F1 10.5 Tf 56 88.26 Td (LinkedIn: https://linkedin.com/in/ibrahim-jameel-ce) Tj ET
+BT /F1 10.5 Tf 56 73.77 Td (GitHub / Portfolio: https://github.com/ibrahim-jameel-ce) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 67 >>
+stream
+BT /F1 10.5 Tf 56 728 Td (Contact: ibrahim.jameel@evolio.dev) Tj ET
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000218 00000 n 
+0000000320 00000 n 
+0000000456 00000 n 
+0000004451 00000 n 
+0000004587 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+4704
+%%EOF
