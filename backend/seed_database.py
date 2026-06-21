@@ -1,19 +1,3 @@
-"""
-seed_database.py - Replace all sample data in the Evolio database with a clean,
-professional dataset (10 students, 20 projects, 10 PDF CVs, 10 project images,
-5 portfolio reviews).
-
-Safe to run multiple times: it clears the relevant tables and old upload files
-first, so repeated runs never create duplicates. It does NOT touch the schema,
-models, routes, or auth logic.
-
-Run from anywhere:
-    python seed_database.py        (recommended: from the backend/ folder)
-
-Uses the existing SQLAlchemy models, DB connection, password hashing, and the
-existing upload/static-file directories.
-"""
-
 import hashlib
 import json
 import os
