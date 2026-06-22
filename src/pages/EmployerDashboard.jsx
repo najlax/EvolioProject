@@ -91,9 +91,9 @@ export default function EmployerDashboard() {
             className="filter-select"
           >
             <option>All</option>
-            <option>Open to work</option>
-            <option>Interviewing</option>
-            <option>Not looking</option>
+            <option>Available</option>
+            <option>Limited Availability</option>
+            <option>Not Available</option>
           </select>
         </div>
 

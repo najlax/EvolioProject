@@ -26,6 +26,7 @@ import EmployerDashboard from "./pages/EmployerDashboard.jsx";
 import PortfolioViewerPage from "./pages/PortfolioViewerPage.jsx";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage.jsx";
 import EmployerMessagingPage from "./pages/EmployerMessagingPage.jsx";
+import SearchPage from "./pages/SearchPage.jsx";
 
 // Career coach pages
 import CoachDashboard from "./pages/CoachDashboard.jsx";
@@ -144,6 +145,14 @@ export default function App() {
         element={
           <ProtectedRoute roles={["employer", "admin"]}>
             <ProjectDetailsPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/employer/search"
+        element={
+          <ProtectedRoute roles={["employer", "admin"]}>
+            <SearchPage />
           </ProtectedRoute>
         }
       />

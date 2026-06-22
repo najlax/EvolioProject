@@ -277,6 +277,7 @@ export const studentLinks = [
 
 export const employerLinks = [
   { label: "Dashboard", to: "/employer/dashboard" },
+  { label: "Search", to: "/employer/search" },
   { label: "Messages", to: "/employer/messages" },
 ];
 

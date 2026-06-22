@@ -9,7 +9,8 @@ import {
   LoadingState,
   ErrorState,
 } from "../components/Components.jsx";
-import { getProfile, updateProfile } from "../services/api.js";
+import { getProfile, updateProfile, generatePortfolioSummary } from "../services/api.js";
+import { Sparkles } from "lucide-react";
 
 // Profile Editor Page - lets a student edit their profile info.
 export default function ProfileEditorPage() {
@@ -25,7 +26,12 @@ export default function ProfileEditorPage() {
   const [github, setGithub] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [contactEmail, setContactEmail] = useState("");
-  const [availability, setAvailability] = useState("Open to work");
+  const [availability, setAvailability] = useState("Available");
+
+  // AI summary generation state
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiError, setAiError] = useState("");
+  const [aiDone, setAiDone] = useState(false);
 
   // Load the logged-in student's profile from the backend on mount.
   useEffect(() => {
@@ -39,11 +45,31 @@ export default function ProfileEditorPage() {
         setGithub(p.github || "");
         setLinkedin(p.linkedin || "");
         setContactEmail(p.contact_email || "");
-        setAvailability(p.availability || "Open to work");
+        setAvailability(p.availability || "Available");
       })
       .catch((err) => setError(err.message || "Could not load your profile."))
       .finally(() => setLoading(false));
   }, []);
+
+  // Generate a professional bio with AI and place it in the Bio field.
+  // The student can still edit it before saving.
+  async function handleGenerateSummary() {
+    setAiError("");
+    setAiDone(false);
+    setAiLoading(true);
+    try {
+      const res = await generatePortfolioSummary();
+      if (res?.summary) {
+        setBio(res.summary);
+        setAiDone(true);
+        setTimeout(() => setAiDone(false), 2500);
+      }
+    } catch (err) {
+      setAiError(err.message || "Could not generate a summary right now.");
+    } finally {
+      setAiLoading(false);
+    }
+  }
 
   async function handleSave(e) {
     e.preventDefault();
@@ -90,6 +116,26 @@ export default function ProfileEditorPage() {
                 onChange={(e) => setHeadline(e.target.value)}
               />
               <Textarea label="Bio" value={bio} onChange={(e) => setBio(e.target.value)} />
+
+              {/* AI summary generator: fills the Bio field above. */}
+              <div className="mb-4 -mt-2">
+                <button
+                  type="button"
+                  onClick={handleGenerateSummary}
+                  disabled={aiLoading}
+                  className="inline-flex items-center gap-1 text-sm text-[#199DB2] hover:underline disabled:opacity-60"
+                >
+                  <Sparkles className={`h-4 w-4 ${aiLoading ? "animate-pulse" : ""}`} />
+                  {aiLoading ? "Generating with AI..." : "Generate bio with AI"}
+                </button>
+                {aiDone && (
+                  <p className="mt-1 text-xs text-green-700">
+                    AI summary added to your bio. Review and save.
+                  </p>
+                )}
+                {aiError && <p className="mt-1 text-xs text-red-600">{aiError}</p>}
+              </div>
+
               <Input
                 label="Skills (comma separated)"
                 value={skills}
@@ -121,9 +167,9 @@ export default function ProfileEditorPage() {
                   onChange={(e) => setAvailability(e.target.value)}
                   className="form-input"
                 >
-                  <option>Open to work</option>
-                  <option>Interviewing</option>
-                  <option>Not looking</option>
+                  <option>Available</option>
+                  <option>Limited Availability</option>
+                  <option>Not Available</option>
                 </select>
               </div>
 

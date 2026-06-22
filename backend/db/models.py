@@ -74,6 +74,8 @@ class StudentProfile(Base):
     skills_json = Column(Text)
     github = Column(String)
     linkedin = Column(String)
+    # AI-generated portfolio summary (optional, set via the AI feature).
+    ai_summary = Column(Text)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 

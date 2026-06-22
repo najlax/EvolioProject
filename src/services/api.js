@@ -116,6 +116,44 @@ export function resetPassword(token, newPassword) {
 }
 
 // ---------------------------------------------------------------------------
+// AI features (Google Gemini)
+// ---------------------------------------------------------------------------
+
+// Extract skills from a project and link them to the project + profile.
+export function extractProjectSkills(projectId) {
+  return request(`/ai/projects/${projectId}/extract-skills`, { method: "POST" });
+}
+
+// Generate (and store) a short AI portfolio summary for the student.
+export function generatePortfolioSummary() {
+  return request("/ai/portfolio-summary", { method: "POST" });
+}
+
+// Ask the portfolio chatbot a question about a specific student.
+// `history` is the prior conversation so the bot can handle follow-ups.
+export function askPortfolioChatbot(studentId, question, history = []) {
+  return request(`/ai/chatbot/student/${studentId}`, {
+    method: "POST",
+    body: { question, history },
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Search (database keyword search, no AI)
+// ---------------------------------------------------------------------------
+
+export function searchStudents(q, skill = "") {
+  const params = new URLSearchParams();
+  if (q) params.set("q", q);
+  if (skill) params.set("skill", skill);
+  return request(`/search/students?${params.toString()}`);
+}
+
+export function searchProjects(q) {
+  return request(`/search/projects?q=${encodeURIComponent(q || "")}`);
+}
+
+// ---------------------------------------------------------------------------
 // Employer / coach applications (admin reviews these)
 // ---------------------------------------------------------------------------
 

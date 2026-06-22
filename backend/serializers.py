@@ -49,7 +49,7 @@ def profile_to_out(profile, user):
         "github": profile.github or "",
         "linkedin": profile.linkedin or "",
         "contact_email": profile.contact_email or "",
-        "availability": profile.availability or "Open to work",
+        "availability": profile.availability or "Available",
     }
 
 

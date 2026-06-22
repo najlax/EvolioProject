@@ -61,6 +61,52 @@ class ResetPasswordRequest(BaseModel):
     new_password: str = Field(min_length=8)
 
 
+# AI features
+
+class ExtractSkillsOut(BaseModel):
+    skills: List[str] = []          # skills extracted for this project
+    profile_skills: List[str] = []  # the student's merged, de-duplicated skills
+
+
+class PortfolioSummaryOut(BaseModel):
+    summary: str
+
+
+class ChatTurn(BaseModel):
+    role: str   # "user" or "bot"
+    text: str
+
+
+class ChatbotRequest(BaseModel):
+    question: str = Field(min_length=1, max_length=500)
+    # Prior conversation so the bot can handle follow-up questions.
+    history: List[ChatTurn] = []
+
+
+class ChatbotResponse(BaseModel):
+    answer: str
+
+
+# Search
+
+class SearchStudentOut(BaseModel):
+    id: int
+    name: str = ""
+    headline: str = ""
+    skills: List[str] = []
+    share_token: Optional[str] = None  # set when a public portfolio link exists
+
+
+class SearchProjectOut(BaseModel):
+    id: int
+    title: str
+    summary: str = ""
+    tech_stack: List[str] = []
+    owner_id: int
+    owner_name: str = ""
+    share_token: Optional[str] = None  # owner's public portfolio link, if any
+
+
 # Employer / coach applications
 
 class ApplicationOut(BaseModel):
@@ -86,7 +132,7 @@ class ProfileIn(BaseModel):
     github: str = ""
     linkedin: str = ""
     contact_email: str = ""
-    availability: str = "Open to work"
+    availability: str = "Available"
 
 
 class ProfileOut(ProfileIn):

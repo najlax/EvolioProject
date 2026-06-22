@@ -8,6 +8,7 @@ import {
   ErrorState,
 } from "../components/Components.jsx";
 import { API_ORIGIN, getPublicPortfolio } from "../services/api.js";
+import PortfolioChatbot from "../components/PortfolioChatbot.jsx";
 import { Github, ExternalLink } from "lucide-react";
 
 // Public, no-login view of a student's portfolio, opened via a share token.
@@ -105,6 +106,9 @@ export default function PublicPortfolioPage() {
                 </div>
               )}
             </Card>
+
+            {/* AI chatbot - answers only from this student's portfolio data */}
+            {profile?.user_id && <PortfolioChatbot studentId={profile.user_id} />}
           </div>
         )}
       </div>

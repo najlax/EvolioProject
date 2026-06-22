@@ -18,7 +18,7 @@ def _get_or_create_profile(db: Session, user: User) -> StudentProfile:
         profile = StudentProfile(
             user_id=user.id,
             contact_email=user.email,
-            availability="Open to work",
+            availability="Available",
         )
         db.add(profile)
         db.commit()

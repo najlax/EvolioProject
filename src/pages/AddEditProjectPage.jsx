@@ -16,8 +16,9 @@ import {
   createProject,
   updateProject,
   uploadProjectImage,
+  extractProjectSkills,
 } from "../services/api.js";
-import { ImagePlus, X } from "lucide-react";
+import { ImagePlus, X, Sparkles } from "lucide-react";
 
 // Add/Edit Project Page - one form used for BOTH adding and editing.
 // If there is a :projectId in the URL we are editing, otherwise adding.
@@ -29,6 +30,10 @@ export default function AddEditProjectPage() {
   const [loading, setLoading] = useState(editing);
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
+  // AI skill-extraction status shown after the project is saved.
+  const [aiStatus, setAiStatus] = useState("");   // "running" | "done" | "error"
+  const [aiSkills, setAiSkills] = useState([]);
+  const [aiError, setAiError] = useState("");
 
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
@@ -84,6 +89,9 @@ export default function AddEditProjectPage() {
   async function handleSave(e) {
     e.preventDefault();
     setError("");
+    setAiError("");
+    setAiSkills([]);
+    setAiStatus("");
     setSaving(true);
     try {
       const payload = {
@@ -107,7 +115,23 @@ export default function AddEditProjectPage() {
       if (screenshotFile) {
         await uploadProjectImage(project.id, screenshotFile);
       }
-      navigate("/student/projects");
+
+      // The project is saved. Now extract skills with AI. This runs after the
+      // save so a failure here never blocks saving the project.
+      setSaving(false);
+      setAiStatus("running");
+      try {
+        const res = await extractProjectSkills(project.id);
+        setAiSkills(res?.skills || []);
+        setAiStatus("done");
+        // Give the student a moment to see the result, then continue.
+        setTimeout(() => navigate("/student/projects"), 1500);
+      } catch (aiErr) {
+        setAiStatus("error");
+        setAiError(aiErr.message || "Could not extract skills with AI.");
+        setTimeout(() => navigate("/student/projects"), 2000);
+      }
+      return;
     } catch (err) {
       setError(err.message || "Could not save the project.");
       setSaving(false);
@@ -128,6 +152,28 @@ export default function AddEditProjectPage() {
             <div>
               <Card>
                 {error && <p className="alert-error">{error}</p>}
+
+                {/* AI skill-extraction status (after save) */}
+                {aiStatus === "running" && (
+                  <p className="mb-4 flex items-center gap-2 rounded-lg bg-[#E1F4F7] p-2 text-sm text-[#147d8f]">
+                    <Sparkles className="h-4 w-4 animate-pulse" />
+                    Extracting skills with AI...
+                  </p>
+                )}
+                {aiStatus === "done" && (
+                  <div className="alert-success">
+                    <span className="flex items-center gap-2 font-medium">
+                      <Sparkles className="h-4 w-4" />
+                      Skills extracted and added to your profile
+                    </span>
+                    {aiSkills.length > 0 && (
+                      <p className="mt-1">{aiSkills.join(", ")}</p>
+                    )}
+                  </div>
+                )}
+                {aiStatus === "error" && (
+                  <p className="alert-error">{aiError}</p>
+                )}
 
                 <form onSubmit={handleSave}>
                   <Input label="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
@@ -240,7 +286,13 @@ export default function AddEditProjectPage() {
                   />
 
                   <div className="flex gap-2">
-                    <Button type="submit">{saving ? "Saving..." : "Save Project"}</Button>
+                    <Button type="submit">
+                      {saving
+                        ? "Saving..."
+                        : aiStatus === "running"
+                        ? "Analyzing..."
+                        : "Save Project"}
+                    </Button>
                     <Button variant="outline" onClick={() => navigate("/student/projects")}>
                       Cancel
                     </Button>

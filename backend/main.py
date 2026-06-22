@@ -5,6 +5,7 @@ from fastapi.staticfiles import StaticFiles
 from db.session import init_db
 from storage import UPLOAD_ROOT
 from routers import (
+    ai,
     applications,
     auth_routes,
     image,
@@ -12,6 +13,7 @@ from routers import (
     project,
     resume,
     review,
+    search,
     share,
 )
 
@@ -40,6 +42,8 @@ app.include_router(image.router)
 app.include_router(share.router)
 app.include_router(review.router)
 app.include_router(applications.router)
+app.include_router(ai.router)
+app.include_router(search.router)
 
 app.mount("/uploads", StaticFiles(directory=UPLOAD_ROOT), name="uploads")
 

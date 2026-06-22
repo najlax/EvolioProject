@@ -907,7 +907,7 @@ def seed(db):
             target_roles=s["target_roles"],
             contact_email=s["email"],
             avatar_color=s["color"][0],
-            availability="Open to work",
+            availability="Available",
             skills_json=json.dumps(s["skills"]),
             github=s["github"],
             linkedin=s["linkedin"],

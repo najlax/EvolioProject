@@ -38,7 +38,11 @@ def init_db():
     Base.metadata.create_all(bind=engine)
 
     added_columns = {
-        "student_profiles": [("github", "VARCHAR"), ("linkedin", "VARCHAR")],
+        "student_profiles": [
+            ("github", "VARCHAR"),
+            ("linkedin", "VARCHAR"),
+            ("ai_summary", "TEXT"),
+        ],
         "projects": [("content", "TEXT")],
         "users": [("status", "VARCHAR")],
     }
@@ -73,3 +77,4 @@ def init_db():
                 "FROM role_upgrade_requests"
             )
             conn.exec_driver_sql("DROP TABLE role_upgrade_requests")
+
