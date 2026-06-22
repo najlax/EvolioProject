@@ -16,7 +16,7 @@ import {
   generateShareLink,
   updateShareSettings,
 } from "../services/api.js";
-import { Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink, Sparkles } from "lucide-react";
 
 // Portfolio Preview Page - shows how the student's public portfolio looks.
 export default function PortfolioPreviewPage() {
@@ -109,6 +109,19 @@ export default function PortfolioPreviewPage() {
                 )}
               </div>
             </Card>
+
+            {/* AI Portfolio Summary (shown to everyone on your public portfolio) */}
+            {profile.ai_summary && (
+              <Card className="border-[#199DB2]/30 bg-[#F4FBFC]">
+                <div className="mb-2 flex items-center gap-2">
+                  <Sparkles className="h-5 w-5 text-[#199DB2]" />
+                  <h3 className="card-title mb-0">AI Portfolio Summary</h3>
+                </div>
+                <p className="text-sm leading-relaxed text-gray-700">
+                  {profile.ai_summary}
+                </p>
+              </Card>
+            )}
 
             {/* Skills */}
             <Card>

@@ -11,6 +11,7 @@ import {
   LoadingState,
 } from "../components/Components.jsx";
 import { getProjects, deleteProject as apiDeleteProject } from "../services/api.js";
+import ProjectCover from "../components/ProjectCover.jsx";
 
 // Projects List Page - shows the student's projects with search/filter
 // plus add/edit/delete.
@@ -96,6 +97,9 @@ export default function ProjectsListPage() {
             <div className="card-grid">
               {visibleProjects.map((project) => (
                 <Card key={project.id}>
+                  {/* Technical cover image (uploaded image or domain gradient) */}
+                  <ProjectCover project={project} className="mb-3" />
+
                   <div className="mb-2 flex items-center justify-between">
                     <h3 className="font-semibold text-gray-800">{project.title}</h3>
                     {project.featured && <Badge text="Featured" color="teal" />}

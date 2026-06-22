@@ -50,6 +50,7 @@ def profile_to_out(profile, user):
         "linkedin": profile.linkedin or "",
         "contact_email": profile.contact_email or "",
         "availability": profile.availability or "Available",
+        "ai_summary": profile.ai_summary or "",
     }
 
 

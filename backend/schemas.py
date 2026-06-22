@@ -137,6 +137,7 @@ class ProfileIn(BaseModel):
 
 class ProfileOut(ProfileIn):
     user_id: int
+    ai_summary: str = ""  # read-only; generated via the AI summary feature
 
 
 

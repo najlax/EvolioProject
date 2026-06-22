@@ -11,6 +11,7 @@ import {
   EmptyState,
 } from "../components/Components.jsx";
 import { students } from "../data.js";
+import { Sparkles } from "lucide-react";
 
 // Employer Dashboard - search candidates and save the ones you like.
 export default function EmployerDashboard() {
@@ -110,8 +111,19 @@ export default function EmployerDashboard() {
                 </div>
                 <p className="text-sm text-gray-500">{student.headline}</p>
 
+                {/* AI summary snippet */}
+                {student.summary && (
+                  <div className="mt-3 rounded-lg border border-[#199DB2]/20 bg-[#F4FBFC] p-3">
+                    <div className="mb-1 flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-[#147d8f]">
+                      <Sparkles className="h-3.5 w-3.5" />
+                      AI Summary
+                    </div>
+                    <p className="text-sm text-gray-600">{student.summary}</p>
+                  </div>
+                )}
+
                 {/* Top skills */}
-                <div className="mt-2 flex flex-wrap gap-1">
+                <div className="mt-3 flex flex-wrap gap-1">
                   {student.skills.slice(0, 3).map((skill) => (
                     <Badge key={skill} text={skill} color="gray" />
                   ))}

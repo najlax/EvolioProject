@@ -10,6 +10,8 @@ export const students = [
     email: "aisha@example.com",
     availability: "Available",
     skills: ["React", "JavaScript", "Tailwind CSS", "HTML", "CSS"],
+    summary:
+      "A highly skilled frontend developer with strong React expertise and a track record of shipping clean, responsive UIs used by real users.",
     github: "https://github.com/aisha",
     linkedin: "https://linkedin.com/in/aisha",
     profileCompletion: 85,
@@ -25,6 +27,8 @@ export const students = [
     email: "marcus@example.com",
     availability: "Limited Availability",
     skills: ["Node.js", "React", "MongoDB", "Express"],
+    summary:
+      "A versatile full-stack developer who enjoys turning ideas into working web apps, with solid Node.js and React experience across the stack.",
     github: "https://github.com/marcus",
     linkedin: "https://linkedin.com/in/marcus",
     profileCompletion: 60,
@@ -40,6 +44,8 @@ export const students = [
     email: "priya@example.com",
     availability: "Not Available",
     skills: ["Python", "Django", "SQL"],
+    summary:
+      "A backend-focused junior engineer passionate about clean code, with a strong Python and Django foundation and a fast learning curve.",
     github: "https://github.com/priya",
     linkedin: "https://linkedin.com/in/priya",
     profileCompletion: 40,
