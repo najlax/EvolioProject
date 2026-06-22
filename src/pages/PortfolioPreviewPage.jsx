@@ -16,6 +16,7 @@ import {
   generateShareLink,
   updateShareSettings,
 } from "../services/api.js";
+import ProjectGallery from "../components/ProjectGallery.jsx";
 import { Github, ExternalLink, Sparkles } from "lucide-react";
 
 // Portfolio Preview Page - shows how the student's public portfolio looks.
@@ -144,17 +145,14 @@ export default function PortfolioPreviewPage() {
                 <div className="space-y-4">
                   {featured.map((p) => (
                     <div key={p.id} className="project-item">
-                      {/* Project screenshots (from uploaded project images) */}
+                      {/* Project screenshots: same gallery layout as the
+                          employer project-details page (1 large + grid). */}
                       {p.images && p.images.length > 0 ? (
-                        <div className="mb-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
-                          {p.images.map((img, i) => (
-                            <img
-                              key={i}
-                              src={`${API_ORIGIN}${img}`}
-                              alt={`${p.title} screenshot ${i + 1}`}
-                              className="h-28 w-full rounded-lg border border-gray-200 object-cover"
-                            />
-                          ))}
+                        <div className="mb-3">
+                          <ProjectGallery
+                            images={p.images.map((img) => `${API_ORIGIN}${img}`)}
+                            title={p.title}
+                          />
                         </div>
                       ) : (
                         <div className="mb-3 flex h-28 items-center justify-center rounded-lg border border-dashed border-gray-200 bg-gray-50 text-xs text-gray-400">

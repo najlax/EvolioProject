@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   Sidebar,
@@ -9,6 +9,7 @@ import {
   Button,
   LoadingState,
 } from "../components/Components.jsx";
+import ProjectImageEditor from "../components/ProjectImageEditor.jsx";
 import {
   API_ORIGIN,
   getProject,
@@ -16,9 +17,12 @@ import {
   createProject,
   updateProject,
   uploadProjectImage,
+  deleteProjectImage,
   extractProjectSkills,
 } from "../services/api.js";
-import { ImagePlus, X, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
+
+const MAX_IMAGES = 4;
 
 // Add/Edit Project Page - one form used for BOTH adding and editing.
 // If there is a :projectId in the URL we are editing, otherwise adding.
@@ -45,17 +49,17 @@ export default function AddEditProjectPage() {
   const [featured, setFeatured] = useState(false);
   const [collaborators, setCollaborators] = useState("");
 
-  // screenshotPreview is what we show; screenshotFile is the new file to upload.
-  const [screenshotPreview, setScreenshotPreview] = useState("");
-  const [screenshotFile, setScreenshotFile] = useState(null);
+  // Project images: each is { id?, url, file? }. Existing images have an id;
+  // newly added ones carry a File to upload on save.
+  const [images, setImages] = useState([]);
+  // Ids of images that already existed when the page loaded (to detect deletes).
+  const [originalImageIds, setOriginalImageIds] = useState([]);
 
-  const fileInputRef = useRef(null);
-
-  // When editing, load the project (and its first image) from the backend.
+  // When editing, load the project (and all its images) from the backend.
   useEffect(() => {
     if (!editing) return;
     Promise.all([getProject(projectId), getProjectImages(projectId)])
-      .then(([p, images]) => {
+      .then(([p, imgs]) => {
         setTitle(p.title || "");
         setSummary(p.summary || "");
         setDescription(p.description || "");
@@ -65,22 +69,16 @@ export default function AddEditProjectPage() {
         setStatus(p.status || "Draft");
         setFeatured(Boolean(p.featured));
         setCollaborators((p.collaborators || []).join(", "));
-        if (images && images.length > 0) {
-          setScreenshotPreview(`${API_ORIGIN}${images[0].url}`);
-        }
+        const existing = (imgs || []).map((img) => ({
+          id: img.id,
+          url: `${API_ORIGIN}${img.url}`,
+        }));
+        setImages(existing);
+        setOriginalImageIds(existing.map((img) => img.id));
       })
       .catch((err) => setError(err.message || "Could not load this project."))
       .finally(() => setLoading(false));
   }, [editing, projectId]);
-
-  function handleScreenshotChange(e) {
-    const file = e.target.files && e.target.files[0];
-    if (!file) return;
-    setScreenshotFile(file);
-    const reader = new FileReader();
-    reader.onload = () => setScreenshotPreview(reader.result);
-    reader.readAsDataURL(file);
-  }
 
   function toList(text) {
     return text.split(",").map((s) => s.trim()).filter(Boolean);
@@ -111,9 +109,18 @@ export default function AddEditProjectPage() {
         ? await updateProject(projectId, payload)
         : await createProject(payload);
 
-      // Upload the screenshot (if a new one was chosen) to the saved project.
-      if (screenshotFile) {
-        await uploadProjectImage(project.id, screenshotFile);
+      // Sync images with the existing multi-image backend:
+      // 1) delete any existing images the student removed
+      const keptIds = images.filter((img) => img.id).map((img) => img.id);
+      const removedIds = originalImageIds.filter((id) => !keptIds.includes(id));
+      for (const id of removedIds) {
+        await deleteProjectImage(project.id, id);
+      }
+      // 2) upload any newly added images (in order)
+      for (const img of images) {
+        if (img.file) {
+          await uploadProjectImage(project.id, img.file);
+        }
       }
 
       // The project is saved. Now extract skills with AI. This runs after the
@@ -200,60 +207,16 @@ export default function AddEditProjectPage() {
                   />
                   <Input label="Demo Link" value={demo} onChange={(e) => setDemo(e.target.value)} />
 
-                  {/* Screenshot uploader */}
+                  {/* Project images uploader (up to 4, 1 large + 3 small) */}
                   <div className="mb-4">
-                    <label className="form-label">Screenshot</label>
-
-                    <input
-                      ref={fileInputRef}
-                      type="file"
-                      accept="image/png,image/jpeg"
-                      className="hidden"
-                      onChange={handleScreenshotChange}
+                    <label className="form-label">
+                      Project Images (up to {MAX_IMAGES})
+                    </label>
+                    <ProjectImageEditor
+                      images={images}
+                      onChange={setImages}
+                      max={MAX_IMAGES}
                     />
-
-                    {screenshotPreview ? (
-                      <div className="relative">
-                        <img
-                          src={screenshotPreview}
-                          alt="Project screenshot preview"
-                          className="w-full rounded-lg border border-gray-200 object-cover"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setScreenshotPreview("");
-                            setScreenshotFile(null);
-                            if (fileInputRef.current) fileInputRef.current.value = "";
-                          }}
-                          className="absolute right-2 top-2 rounded-full bg-white/90 p-1 text-gray-600 shadow hover:bg-white"
-                          aria-label="Remove screenshot"
-                        >
-                          <X className="h-4 w-4" />
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => fileInputRef.current && fileInputRef.current.click()}
-                          className="mt-2 text-sm text-[#199DB2] hover:underline"
-                        >
-                          Replace screenshot
-                        </button>
-                      </div>
-                    ) : (
-                      <div
-                        role="button"
-                        tabIndex={0}
-                        onClick={() => fileInputRef.current && fileInputRef.current.click()}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ")
-                            fileInputRef.current && fileInputRef.current.click();
-                        }}
-                        className="upload-box cursor-pointer p-6 hover:border-[#3199CC]"
-                      >
-                        <ImagePlus className="mb-2 h-7 w-7 text-gray-400" />
-                        <p className="text-sm text-gray-500">Click to add a screenshot (PNG or JPG)</p>
-                      </div>
-                    )}
                   </div>
 
                   {/* Status dropdown */}

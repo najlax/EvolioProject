@@ -9,6 +9,7 @@ import {
 } from "../components/Components.jsx";
 import { API_ORIGIN, getPublicPortfolio } from "../services/api.js";
 import PortfolioChatbot from "../components/PortfolioChatbot.jsx";
+import ProjectGallery from "../components/ProjectGallery.jsx";
 import { Github, ExternalLink, Sparkles } from "lucide-react";
 
 // Public, no-login view of a student's portfolio, opened via a share token.
@@ -87,17 +88,13 @@ export default function PublicPortfolioPage() {
                 <div className="space-y-4">
                   {projects.map((p) => (
                     <div key={p.id} className="project-item">
-                      {/* Project screenshots, if any were uploaded */}
+                      {/* Project screenshots: same gallery layout as employer */}
                       {p.images && p.images.length > 0 && (
-                        <div className="mb-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
-                          {p.images.map((img, i) => (
-                            <img
-                              key={i}
-                              src={`${API_ORIGIN}${img}`}
-                              alt={`${p.title} screenshot ${i + 1}`}
-                              className="h-28 w-full rounded-lg border border-gray-200 object-cover"
-                            />
-                          ))}
+                        <div className="mb-3">
+                          <ProjectGallery
+                            images={p.images.map((img) => `${API_ORIGIN}${img}`)}
+                            title={p.title}
+                          />
                         </div>
                       )}
                       <h3 className="font-medium text-gray-800">{p.title}</h3>

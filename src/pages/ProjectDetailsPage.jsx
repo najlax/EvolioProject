@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import {
   Sidebar,
@@ -8,14 +7,8 @@ import {
   ErrorState,
 } from "../components/Components.jsx";
 import { students, projects } from "../data.js";
-import {
-  Github,
-  ExternalLink,
-  ArrowLeft,
-  X,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import ProjectGallery from "../components/ProjectGallery.jsx";
+import { Github, ExternalLink, ArrowLeft } from "lucide-react";
 
 // =============================================================
 // Project Details Page
@@ -29,9 +22,6 @@ export default function ProjectDetailsPage() {
 
   const project = projects.find((p) => p.id === projectId);
   const student = students.find((s) => s.id === studentId);
-
-  // Lightbox state: which screenshot index is open (null = closed)
-  const [lightbox, setLightbox] = useState(null);
 
   // Guard: bad/unknown project id
   if (!project) {
@@ -47,20 +37,6 @@ export default function ProjectDetailsPage() {
 
   const shots = project.screenshots || [];
   const portfolioLink = student ? `/employer/portfolio/${student.id}` : "/employer/dashboard";
-
-  // Lightbox navigation (wraps around)
-  function openLightbox(i) {
-    setLightbox(i);
-  }
-  function closeLightbox() {
-    setLightbox(null);
-  }
-  function prevImage() {
-    setLightbox((i) => (i - 1 + shots.length) % shots.length);
-  }
-  function nextImage() {
-    setLightbox((i) => (i + 1) % shots.length);
-  }
 
   // Reusable pair of resource buttons (used in hero + bottom CTA).
   // Buttons are hidden entirely when their URL is missing — never disabled.
@@ -144,43 +120,7 @@ export default function ProjectDetailsPage() {
           {shots.length > 0 && (
             <Card>
               <h2 className="card-title">Screenshots</h2>
-
-              {/* Primary screenshot (above the fold) */}
-              <button
-                type="button"
-                onClick={() => openLightbox(0)}
-                className="block w-full overflow-hidden rounded-xl border border-gray-100"
-              >
-                <img
-                  src={shots[0]}
-                  alt={`${project.title} main screenshot`}
-                  className="h-auto w-full object-cover transition hover:opacity-95"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </button>
-
-              {/* Additional screenshots */}
-              {shots.length > 1 && (
-                <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                  {shots.slice(1).map((src, i) => (
-                    <button
-                      key={src}
-                      type="button"
-                      onClick={() => openLightbox(i + 1)}
-                      className="overflow-hidden rounded-lg border border-gray-100"
-                    >
-                      <img
-                        src={src}
-                        alt={`${project.title} screenshot ${i + 2}`}
-                        className="h-32 w-full object-cover transition hover:opacity-90"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </button>
-                  ))}
-                </div>
-              )}
+              <ProjectGallery images={shots} title={project.title} />
             </Card>
           )}
 
@@ -243,64 +183,6 @@ export default function ProjectDetailsPage() {
           )}
         </div>
       </main>
-
-      {/* FULLSCREEN LIGHTBOX -------------------------------------------- */}
-      {lightbox !== null && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
-          onClick={closeLightbox}
-        >
-          {/* Close */}
-          <button
-            onClick={closeLightbox}
-            className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
-            aria-label="Close image viewer"
-          >
-            <X className="h-6 w-6" />
-          </button>
-
-          {/* Prev / Next (only when there is more than one image) */}
-          {shots.length > 1 && (
-            <>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  prevImage();
-                }}
-                className="absolute left-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
-                aria-label="Previous image"
-              >
-                <ChevronLeft className="h-7 w-7" />
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  nextImage();
-                }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
-                aria-label="Next image"
-              >
-                <ChevronRight className="h-7 w-7" />
-              </button>
-            </>
-          )}
-
-          {/* The image itself (stop click so it doesn't close) */}
-          <img
-            src={shots[lightbox]}
-            alt={`${project.title} screenshot ${lightbox + 1}`}
-            className="max-h-[90vh] max-w-[90vw] rounded-lg object-contain"
-            onClick={(e) => e.stopPropagation()}
-          />
-
-          {/* Counter */}
-          {shots.length > 1 && (
-            <p className="absolute bottom-4 text-sm text-white/70">
-              {lightbox + 1} / {shots.length}
-            </p>
-          )}
-        </div>
-      )}
     </div>
   );
 }
