@@ -125,6 +125,20 @@ export default function PortfolioViewerPage() {
                 </div>
               </div>
               <p className="mt-4 text-sm text-gray-600">{student.bio}</p>
+
+              {/* Keyword skills - same data source/formatting as the dashboard */}
+              {(student.skills || []).length > 0 && (
+                <div className="mt-4">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">
+                    Skills
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {student.skills.map((skill) => (
+                      <Badge key={skill} text={skill} color="gray" />
+                    ))}
+                  </div>
+                </div>
+              )}
             </Card>
 
             {/* AI Portfolio Summary - same summary shown on the dashboard cards.
