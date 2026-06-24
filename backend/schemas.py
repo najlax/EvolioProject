@@ -87,6 +87,13 @@ class ChatbotResponse(BaseModel):
     answer: str
 
 
+class CandidateChatRequest(BaseModel):
+    # Pre-built portfolio context (profile, skills, projects, summary, etc.).
+    context: str = Field(min_length=1, max_length=8000)
+    question: str = Field(min_length=1, max_length=500)
+    history: List[ChatTurn] = []
+
+
 # Search
 
 class SearchStudentOut(BaseModel):

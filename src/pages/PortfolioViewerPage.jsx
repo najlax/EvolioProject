@@ -7,11 +7,11 @@ import {
   Button,
   Badge,
   Textarea,
-  Modal,
   ErrorState,
-  LoadingState,
 } from "../components/Components.jsx";
-import { students, projects, resumes, aiFeedback } from "../data.js";
+import CandidateChat from "../components/CandidateChat.jsx";
+import { students, projects, resumes } from "../data.js";
+import { chatWithCandidate } from "../services/api.js";
 import { Github, ExternalLink, Bot, FileText, Sparkles } from "lucide-react";
 
 // Portfolio Viewer Page - how an employer sees a student's full portfolio.
@@ -24,12 +24,11 @@ export default function PortfolioViewerPage() {
   const studentProjects = student ? projects.filter((p) => p.studentId === student.id) : [];
   const resume = student ? resumes.find((r) => r.studentId === student.id) : null;
 
-  // Local state for feedback box + save + bot
+  // Local state for feedback box + save + AI chat
   const [feedback, setFeedback] = useState("");
   const [feedbackSent, setFeedbackSent] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [botOpen, setBotOpen] = useState(false);
-  const [botLoading, setBotLoading] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
 
   // If the student id is wrong, show an error state
   if (!student) {
@@ -49,10 +48,33 @@ export default function PortfolioViewerPage() {
     setTimeout(() => setFeedbackSent(false), 2000);
   }
 
-  function askBot() {
-    setBotOpen(true);
-    setBotLoading(true);
-    setTimeout(() => setBotLoading(false), 1500);
+  // Build a portfolio context string from the candidate's data so the AI can
+  // answer strictly from it (profile, skills, projects, AI summary).
+  const candidateContext = [
+    `Name: ${student.name}`,
+    `Headline: ${student.headline || "N/A"}`,
+    `Location: ${student.location || "N/A"}`,
+    `Availability: ${student.availability || "N/A"}`,
+    `Bio: ${student.bio || "N/A"}`,
+    `Skills: ${(student.skills || []).join(", ") || "N/A"}`,
+    `AI Summary: ${student.summary || "N/A"}`,
+    "Projects:",
+    ...(studentProjects.length
+      ? studentProjects.map(
+          (p) =>
+            `- ${p.title}: ${p.summary || p.description || ""}` +
+            ((p.techStack || []).length
+              ? ` (Tech: ${p.techStack.join(", ")})`
+              : "") +
+            (p.role ? ` [Role: ${p.role}]` : "")
+        )
+      : ["None"]),
+  ].join("\n");
+
+  // Send a chat question to the backend (answers only from the context above).
+  async function handleChatSend(question, history) {
+    const res = await chatWithCandidate(candidateContext, question, history);
+    return res?.answer || "";
   }
 
   return (
@@ -209,29 +231,29 @@ export default function PortfolioViewerPage() {
               <Button onClick={sendFeedback}>Send</Button>
             </Card>
 
-            {/* Ask About This Candidate bot */}
+            {/* Ask About This Candidate - opens a conversational AI chat */}
             <Card>
-              <div className="mb-3 flex items-center gap-2">
-                <Bot className="h-5 w-5 text-[#001776]" />
+              <div className="mb-2 flex items-center gap-2">
+                <Bot className="h-5 w-5 text-[#7c3aed]" />
                 <h3 className="font-semibold text-gray-800">Ask About This Candidate</h3>
               </div>
-              <Button onClick={askBot}>Ask the Bot</Button>
+              <p className="mb-3 text-sm text-gray-500">
+                Chat with the AI assistant about {student.name}'s skills,
+                projects and experience.
+              </p>
+              <Button onClick={() => setChatOpen(true)}>Start Chat</Button>
             </Card>
           </div>
         </div>
       </main>
 
-      {/* Bot modal (fake AI) */}
-      <Modal open={botOpen} onClose={() => setBotOpen(false)} title="Candidate Bot">
-        {botLoading ? (
-          <LoadingState message="Bot is thinking..." />
-        ) : (
-          <div>
-            <p className="mb-4 text-sm text-gray-700">{aiFeedback.candidateBotAnswer}</p>
-            <Button onClick={() => setBotOpen(false)}>Close</Button>
-          </div>
-        )}
-      </Modal>
+      {/* Conversational AI chat panel */}
+      <CandidateChat
+        open={chatOpen}
+        onClose={() => setChatOpen(false)}
+        candidateName={student.name}
+        onSend={handleChatSend}
+      />
     </div>
   );
 }

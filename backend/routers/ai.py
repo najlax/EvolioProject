@@ -3,10 +3,11 @@ import json
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from auth.auth import require_student
+from auth.auth import get_current_user, require_student
 from db.models import Project, ShareLink, StudentProfile, User
 from db.session import get_db
 from schemas import (
+    CandidateChatRequest,
     ChatbotRequest,
     ChatbotResponse,
     ExtractSkillsOut,
@@ -184,6 +185,30 @@ def portfolio_chatbot(
 
     try:
         answer = ai_service.answer_portfolio_question(context, question, history)
+    except AIServiceError as exc:
+        raise HTTPException(status_code=503, detail=str(exc))
+
+    return ChatbotResponse(answer=answer)
+
+
+@router.post("/chat", response_model=ChatbotResponse)
+def candidate_chat(
+    data: CandidateChatRequest,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Conversational Q&A about a candidate using a caller-supplied portfolio
+    context. Used by the employer portfolio view. Answers strictly from the
+    provided context (no outside knowledge); requires a logged-in user."""
+    question = (data.question or "").strip()
+    if not question:
+        raise HTTPException(status_code=400, detail="Please enter a question.")
+
+    history = [{"role": t.role, "text": t.text} for t in (data.history or [])]
+    try:
+        answer = ai_service.answer_portfolio_question(
+            data.context, question, history
+        )
     except AIServiceError as exc:
         raise HTTPException(status_code=503, detail=str(exc))
 

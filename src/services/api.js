@@ -138,6 +138,15 @@ export function askPortfolioChatbot(studentId, question, history = []) {
   });
 }
 
+// Conversational chat about a candidate using a caller-supplied portfolio
+// context (used by the employer portfolio view). Requires login.
+export function chatWithCandidate(context, question, history = []) {
+  return request("/ai/chat", {
+    method: "POST",
+    body: { context, question, history },
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Search (database keyword search, no AI)
 // ---------------------------------------------------------------------------
