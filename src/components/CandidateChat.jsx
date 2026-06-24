@@ -86,7 +86,7 @@ export default function CandidateChat({
       aria-label="Ask about this candidate"
     >
       {/* Header */}
-      <div className="flex items-center gap-3 bg-gradient-to-r from-[#6d28d9] to-[#7c3aed] px-4 py-3 text-white">
+      <div className="flex items-center gap-3 bg-gradient-to-r from-[#199DB2] to-[#199DB2] px-4 py-3 text-white">
         <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20">
           <Sparkles className="h-5 w-5" />
         </span>
@@ -136,7 +136,7 @@ export default function CandidateChat({
             }`}
           >
             {m.role === "bot" && (
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#f5f3ff] text-[#7c3aed]">
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#f5f3ff] text-[#199DB2]">
                 <Bot className="h-4 w-4" />
               </span>
             )}
@@ -160,7 +160,7 @@ export default function CandidateChat({
 
         {loading && (
           <div className="chat-msg-in flex items-end gap-2">
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#f5f3ff] text-[#7c3aed]">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#f5f3ff] text-[#199DB2]">
               <Bot className="h-4 w-4" />
             </span>
             <span className="inline-block rounded-2xl rounded-bl-sm bg-gray-100 px-3 py-2 text-sm text-gray-400">
@@ -191,7 +191,7 @@ export default function CandidateChat({
         <button
           type="submit"
           disabled={loading || !question.trim()}
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#7c3aed] text-white transition hover:bg-[#6d28d9] disabled:opacity-50"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#199DB2] text-white transition hover:bg-[#001776] disabled:opacity-50"
           aria-label="Send"
         >
           <Send className="h-4 w-4" />
@@ -204,3 +204,4 @@ export default function CandidateChat({
     </div>
   );
 }
+
